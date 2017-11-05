@@ -35,8 +35,8 @@
                 text-align: center;
             }
 
-            .tile {
-                font-size: 10em;
+            .title {
+                font-size: 7.5em;
                 margin-bottom: 30px;
             }
         </style>
@@ -45,7 +45,7 @@
         <div class="flex-center position-ref full-height">
             <div class="content">
                 <div class="title">
-                    Dispatch
+                    <h1>Dispatch</h1>
                 </div>
             </div>
         </div>
