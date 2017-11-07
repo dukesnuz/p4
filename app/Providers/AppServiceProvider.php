@@ -11,9 +11,10 @@ class AppServiceProvider extends ServiceProvider
      *
      * @return void
      */
+     /* Updated for migration and MySQL */
     public function boot()
     {
-        //
+        \Schema::defaultStringLength(191);
     }
 
     /**
