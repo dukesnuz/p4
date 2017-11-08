@@ -26,7 +26,7 @@ class CreateContactsTable extends Migration
             $table->string('extension', 10);
             $table->string('fax', 10);
             $table->string('country_code', 5)->default(1);
-            $table->enum('delete', ['true', 'false'])->default('false');
+            $table->tinyInteger('delete')->default(0)->unsigned();
         });
     }
 

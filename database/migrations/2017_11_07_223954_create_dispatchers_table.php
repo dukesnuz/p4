@@ -16,8 +16,9 @@ class CreateDispatchersTable extends Migration
         Schema::create('dispatchers', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
-            $table->string('name', 45);
-            $table->enum('delete', ['true', 'false'])->default('false');
+            $table->string('office_name', 45);
+            $table->tinyInteger('disable')->default(1)->unsigned();
+            $table->tinyInteger('delete')->default(0)->unsigned();
         });
     }
 

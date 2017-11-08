@@ -23,7 +23,7 @@ class CreateAddressesTable extends Migration
             $table->string('zip', 11);
             $table->enum('country', ['USA', 'Mexico', 'Canada']);
             $table->enum('type', ['mailing', 'street']);
-            $table->enum('delete', ['true', 'false'])->default('false');
+            $table->tinyInteger('delete')->default(0)->unsigned();
         });
     }
 
