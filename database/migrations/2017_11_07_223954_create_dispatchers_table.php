@@ -17,8 +17,9 @@ class CreateDispatchersTable extends Migration
             $table->increments('id');
             $table->timestamps();
             $table->string('office_name', 45);
-            $table->tinyInteger('disable')->default(1)->unsigned();
-            $table->tinyInteger('delete')->default(0)->unsigned();
+            $table->boolean('active')->default(0);
+            $table->softDeletes();
+
         });
     }
 
