@@ -28,7 +28,7 @@ class AddressesTableSeeder extends Seeder
         foreach ($addresses as $key => $address) {
             Address::insert([
                 'created_at' => Carbon\Carbon::now()->subDays($count)->toDateTimeString(),
-                'updated_at' => Carbon\Carbon::now()->subDays($count)->toDateTimeString(),
+                'updated_at' => Carbon\Carbon::now()->subDays($count - 1)->toDateTimeString(),
                 'address' => $address[0],
                 'suite' => $address[1],
                 'city' => $address[2],

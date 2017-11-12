@@ -24,7 +24,7 @@ class DispatchersTableSeeder extends Seeder
         foreach ($dispatchers as $key => $dispatcher) {
             Dispatcher::insert([
                 'created_at' => Carbon\Carbon::now()->subDays($count)->toDateTimeString(),
-                'updated_at' => Carbon\Carbon::now()->subDays($count)->toDateTimeString(),
+                'updated_at' => Carbon\Carbon::now()->subDays($count - 1)->toDateTimeString(),
                 'office_name' => $dispatcher[0]
             ]);
             $count--;

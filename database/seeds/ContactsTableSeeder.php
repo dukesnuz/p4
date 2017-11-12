@@ -24,7 +24,7 @@ class ContactsTableSeeder extends Seeder
         foreach ($contacts as $key => $contact) {
             Contact::insert([
                 'created_at' => Carbon\Carbon::now()->subDays($count)->toDateTimeString(),
-                'updated_at' => Carbon\Carbon::now()->subDays($count)->toDateTimeString(),
+                'updated_at' => Carbon\Carbon::now()->subDays($count - 1)->toDateTimeString(),
                 'first_name' => $contact[0],
                 'last_name' => $contact[1],
                 'title' => $contact[2],
