@@ -45,7 +45,7 @@
         <div class="flex-center position-ref full-height">
             <div class="content">
                 <div class="title">
-                    <h1>Dispatch</h1>
+                    <h1>Dispatch Welcome</h1>
                 </div>
             </div>
         </div>
