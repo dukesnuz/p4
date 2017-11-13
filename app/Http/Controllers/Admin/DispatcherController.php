@@ -24,8 +24,7 @@ class DispatcherController extends Controller
      */
     public function create()
     {
-        //return view('admin.dispatcher.create');
-        return 'create';
+        return view('admin.dispatcher.create');
     }
 
     /**
