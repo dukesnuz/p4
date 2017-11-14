@@ -47,6 +47,7 @@
                 <div class="title">
                     <h1>Dispatch Welcome</h1>
                 </div>
+                <p>welcome blade</p>
             </div>
         </div>
     </body>
