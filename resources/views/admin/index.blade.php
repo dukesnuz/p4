@@ -58,7 +58,8 @@
 				<h2>Admin Home</h2>
 				<p><a href="/dispatchers/">Dispatcher Home</a></p>
                 <p>admin folder</p>
-                <h2><?php echo Config('constants.domain');?></h2>
+                <a href="http://dispatch.<?php echo Config('constants.domain'); ?>">dispatch temp link</a>
+
             </div>
         </div>
     </body>
