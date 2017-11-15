@@ -5,5 +5,5 @@
 @endsection
 
 @section('content')
-    show dispatchers
+    {{ $first_name }} {{ $last_name }} has been added to the database
 @endsection
