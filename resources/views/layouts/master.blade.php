@@ -4,7 +4,6 @@
 	<title>
 		@yield('title', 'Admin')
 	</title>
-
 	<!--add meta
 	link to style sheet
 -->
