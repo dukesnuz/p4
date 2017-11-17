@@ -16,7 +16,7 @@
         <p>
             <label for="office_names">Select an Office</label>
             <select id="office_names">
-                <option name="office_name">Select</option>
+                <option>Select</option>
                 @foreach($results as $result):
                    <option value={{ $result->id .'-'. str_replace(' ', '', $result->office_name) }}>{{ $result->office_name }}</option>
                 @endforeach
@@ -46,6 +46,46 @@
                  <option value=""></option>
                  <option value="dispatcher">Dispatcher</option>
                  <option value="sales">Sales</option>
+            </select>
+        </p>
+
+        <p>
+            <label for='email'>Email</label>
+            <input type='text' name='email' value={{ old('email') }}>
+        </p>
+        @include('modules.error-field', ['fieldName' => 'email'])
+
+        <p>
+            <label for='telephone'>Telephone</label>
+            <input type='text' name='telephone' value={{ old('telephone') }}>
+        </p>
+        @include('modules.error-field', ['fieldName' => 'telephone'])
+
+        <p>
+            <label for='ext'>Ext</label>
+            <input type='text' name='ext' value={{ old('ext') }}>
+        </p>
+
+        <p>
+            <label for='mobile'>Mobile</label>
+            <input type='text' name='mobile' value={{ old('mobile') }}>
+        </p>
+
+        <p>
+            <label for='mobile_carrier'>Mobile Carrier</label>
+            <input type='text' name='mobile_carrier' value={{ old('mobile_carrier') }}>
+        </p>
+
+        <p>
+            <label for='fax'>Fax</label>
+            <input type='text' name='fax' value={{ old('fax') }}>
+        </p>
+
+        <p>
+            <label for="country_code">Select a Country Code</label>
+            <select>
+                 <option value=""></option>
+                 <option value="1">USA</option>
             </select>
         </p>
 

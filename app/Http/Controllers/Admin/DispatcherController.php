@@ -27,7 +27,7 @@ class DispatcherController extends Controller
      */
     public function create()
     {
-        // maybe just get data for office_name column  
+        // maybe just get data for office_name column
         $results = Dispatcher::all();
         if($results->isNotEmpty()):
             return view('admin.dispatcher.create')->with([
@@ -48,10 +48,23 @@ class DispatcherController extends Controller
      */
     public function store(Request $request)
     {
+        $telephone = str_replace(array('','-', '(',')'),'', $request->input('telephone'));
+        $mobile = str_replace(array('','-', '(',')'),'', $request->input('mobile'));
+        $fax = str_replace(array('','-', '(',')'),'', $request->input('fax'));
         // validate data
-        $this->validate($request, [
+        /*$this->validate($request, [
+            'office_name' => 'required',
             'first_name' => 'required',
-            'last_name' => 'required'
+            'last_name' => 'required',
+            'email' => 'required|email',
+            'telephone' => 'required|numeric|size:10',
+            'mobile' => 'numeric|size:10',
+            'fax' => 'numeric|size:10',
+            'country_code' => 'required|numeric'
+
+        ]);*/
+        $this->validate($request, [
+            str_replace(array('','-', '(',')'),'', 'telephone') => 'required|numeric',
         ]);
         $first_name = $request->input('first_name');
         $last_name = $request->input('last_name');
@@ -65,8 +78,9 @@ class DispatcherController extends Controller
             'title' => 'dispatcher',
             'email' => 'email',
             'email_hash' => 'hash',
-            'telephone' => 8,
+            'telephone' => $telephone,
             'mobile' => 7,
+            'mobile_carrier' => 'sprint',
             'extension' => 6,
             'fax' => 5,
             'country_code' => 1

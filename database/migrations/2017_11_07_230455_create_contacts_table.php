@@ -22,9 +22,10 @@ class CreateContactsTable extends Migration
             $table->string('email', 60);
             $table->char('email_hash', 40);
             $table->string('telephone', 10);
-            $table->string('mobile', 10);
-            $table->string('extension', 10);
-            $table->string('fax', 10);
+            $table->string('extension', 10)->nullable();
+            $table->string('mobile', 10)->nullable();
+            $table->enum('mobile_carrier', ['sprint', 'verizon'])->nullable();
+            $table->string('fax', 10)->nullable();
             $table->string('country_code', 5)->default(1);
             $table->softDeletes();
         });
