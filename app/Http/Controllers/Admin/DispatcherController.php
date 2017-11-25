@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Contact;
 use App\Dispatcher;
-
+use App\Utilities\ResetDatabase;
 
 class DispatcherController extends Controller
 {
@@ -27,17 +27,17 @@ class DispatcherController extends Controller
      */
     public function create()
     {
+        //ResetDatabase::resetDatabase();
         // maybe just get data for office_name column
-        $results = Dispatcher::all();
+        $results = Dispatcher::orderBy('office_name')->get();
         if($results->isNotEmpty()):
             return view('admin.dispatcher.create')->with([
                  'results' => $results,
             ]);;
         endif;
         return view('admin.dispatcher.create')->with([
-             'results' => "null",
+             'results' => '',
         ]);;
-
     }
 
     /**
@@ -48,9 +48,11 @@ class DispatcherController extends Controller
      */
     public function store(Request $request)
     {
-        $telephone = str_replace(array('','-', '(',')'),'', $request->input('telephone'));
-        $mobile = str_replace(array('','-', '(',')'),'', $request->input('mobile'));
-        $fax = str_replace(array('','-', '(',')'),'', $request->input('fax'));
+
+        //Dispatcher::dump($request);
+        //$telephone = str_replace(array('','-', '(',')'),'', $request->input('telephone'));
+        //$mobile = str_replace(array('','-', '(',')'),'', $request->input('mobile'));
+        //$fax = str_replace(array('','-', '(',')'),'', $request->input('fax'));
         // validate data
         /*$this->validate($request, [
             'office_name' => 'required',
@@ -63,33 +65,37 @@ class DispatcherController extends Controller
             'country_code' => 'required|numeric'
 
         ]);*/
-        $this->validate($request, [
-            str_replace(array('','-', '(',')'),'', 'telephone') => 'required|numeric',
-        ]);
-        $first_name = $request->input('first_name');
-        $last_name = $request->input('last_name');
+        //$this->validate($request, [
+        //    str_replace(array('','-', '(',')'),'', 'telephone') => 'required|numeric',
+        //]);
 
-        #code here to add to database
-        Contact::insert([
-            'created_at' => now()->toDateTimeString(),
-            'updated_at' => now()->toDateTimeString(),
-            'first_name' => $first_name,
-            'last_name' => $last_name,
-            'title' => 'dispatcher',
-            'email' => 'email',
-            'email_hash' => 'hash',
-            'telephone' => $telephone,
-            'mobile' => 7,
-            'mobile_carrier' => 'sprint',
-            'extension' => 6,
-            'fax' => 5,
-            'country_code' => 1
-        ]);
-        // redirect to view new input
-        return redirect('dispatcher/show/'.$first_name.'/'.$last_name)->with([
-            'first_name' => $first_name,
-            'last_name' => $last_name
-        ]);
+         $newContact = new Contact();
+         $newContact->first_name = $request->input('first_name');
+         $newContact->last_name = $request->input('last_name');
+         $newContact->title = $request->input('title');
+         $newContact->email = $request->input('email');
+         $newContact->email_hash = sha1($request->input('email'));
+         $newContact->telephone = $request->input('telephone');
+         $newContact->mobile = $request->input('mobile');
+         $newContact->mobile_carrier = $request->input('mobile_carrier');
+         $newContact->extension = $request->input('extension');
+         $newContact->fax = $request->input('fax');
+         $newContact->country_code = $request->input('country_code');
+         $newContact->save();
+
+         // get dispatcher from office and see if it exists
+         $result = Dispatcher::find($request->input('id'));
+         // if does not add to database
+         if($result == null):
+            dump($result);
+            $newDispatcher = new Dispatcher();
+            $newDispatcher->office_name = $request->input('office_name');
+            $newDispatcher->save();
+            return 'added';
+          endif;
+         // if does do nothing
+         return 'notAdded';
+
     }
 
     /**

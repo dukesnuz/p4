@@ -19,14 +19,14 @@ class CreateContactsTable extends Migration
             $table->string('first_name', 20);
             $table->string('last_name', 60);
             $table->enum('title', ['dispatcher', 'sales']);
-            $table->string('email', 60);
-            $table->char('email_hash', 40);
+            $table->string('email', 60)->unique();
+            $table->char('email_hash', 40)->unique();
             $table->string('telephone', 10);
             $table->string('extension', 10)->nullable();
             $table->string('mobile', 10)->nullable();
             $table->enum('mobile_carrier', ['sprint', 'verizon'])->nullable();
             $table->string('fax', 10)->nullable();
-            $table->string('country_code', 5)->default(1);
+            $table->char('country_code', 3)->default(1);
             $table->softDeletes();
         });
     }

@@ -14,9 +14,9 @@ class ContactsTableSeeder extends Seeder
     {
         $contacts = [
             ['John', 'Adams', 'sales', 'john@example.com', '111www222eeee333rrr444ttt555yyy666uuu666', '1234567899', 9876543211, 123, 4567897899, 1],
-            ['George', 'Washington', 'dispatcher', 'george@example.com', '111www222eeee333rrr444ttt555yyy666uuu666', '1234567899', 9876543211, 123, 4567897899, 1],
-            ['Thomas', 'Jefferson', 'sales', 'tom@example.com', '111www222eeee333rrr444ttt555yyy666uuu666', '1234567899', 9876543211, 123, 4567897899, 1],
-            ['Benjamin', 'Franklin', 'dispatcher', 'ben@example.com', '111www222eeee333rrr444ttt555yyy666uuu666', '1234567899', 9876543211, 123, 4567897899, 1],
+            ['George', 'Washington', 'dispatcher', 'george@example.com', '211www222eeee333rrr444ttt555yyy666uuu666', '1234567899', 9876543211, 123, 4567897899, 1],
+            ['Thomas', 'Jefferson', 'sales', 'tom@example.com', '311www222eeee333rrr444ttt555yyy666uuu666', '1234567899', 9876543211, 123, 4567897899, 1],
+            ['Benjamin', 'Franklin', 'dispatcher', 'ben@example.com', '411www222eeee333rrr444ttt555yyy666uuu666', '1234567899', 9876543211, 123, 4567897899, 1],
         ];
 
         $count = count($contacts);

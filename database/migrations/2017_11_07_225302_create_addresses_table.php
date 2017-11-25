@@ -21,7 +21,7 @@ class CreateAddressesTable extends Migration
             $table->string('city', 60);
             $table->char('state', 3);
             $table->string('zip', 11);
-            $table->enum('country', ['USA', 'Mexico', 'Canada']);
+            $table->enum('country', ['US', 'MX', 'CA']);
             $table->enum('type', ['mailing', 'street']);
             $table->softDeletes();
         });
