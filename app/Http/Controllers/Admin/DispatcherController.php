@@ -48,26 +48,23 @@ class DispatcherController extends Controller
      */
     public function store(Request $request)
     {
-
-        //Dispatcher::dump($request);
-        //$telephone = str_replace(array('','-', '(',')'),'', $request->input('telephone'));
-        //$mobile = str_replace(array('','-', '(',')'),'', $request->input('mobile'));
-        //$fax = str_replace(array('','-', '(',')'),'', $request->input('fax'));
         // validate data
-        /*$this->validate($request, [
+        $this->validate($request, [
             'office_name' => 'required',
             'first_name' => 'required',
             'last_name' => 'required',
             'email' => 'required|email',
-            'telephone' => 'required|numeric|size:10',
-            'mobile' => 'numeric|size:10',
-            'fax' => 'numeric|size:10',
-            'country_code' => 'required|numeric'
+            'telephone' => 'phone:US,BE',
+            'mobile' => 'phone:US,BE',
+            'fax' => 'phone:US,BE',
+            'country_code' => 'numeric'
 
-        ]);*/
-        //$this->validate($request, [
-        //    str_replace(array('','-', '(',')'),'', 'telephone') => 'required|numeric',
-        //]);
+        ]);
+
+         // Strip extra characters from numbers
+         $telephone = str_replace(array('','-', '(',')'),'', $request->input('telephone'));
+         $mobile = str_replace(array('','-', '(',')'),'', $request->input('mobile'));
+         $fax = str_replace(array('','-', '(',')'),'', $request->input('fax'));
 
          $newContact = new Contact();
          $newContact->first_name = $request->input('first_name');
@@ -75,26 +72,25 @@ class DispatcherController extends Controller
          $newContact->title = $request->input('title');
          $newContact->email = $request->input('email');
          $newContact->email_hash = sha1($request->input('email'));
-         $newContact->telephone = $request->input('telephone');
-         $newContact->mobile = $request->input('mobile');
+         $newContact->telephone = $telephone;
+         $newContact->mobile = $mobile;
          $newContact->mobile_carrier = $request->input('mobile_carrier');
          $newContact->extension = $request->input('extension');
-         $newContact->fax = $request->input('fax');
+         $newContact->fax = $fax;
          $newContact->country_code = $request->input('country_code');
          $newContact->save();
 
-         // get dispatcher from office and see if it exists
+         // Get dispatcher from office and see if it exists
          $result = Dispatcher::find($request->input('id'));
-         // if does not add to database
+         // If does not add to database
          if($result == null):
-            dump($result);
             $newDispatcher = new Dispatcher();
             $newDispatcher->office_name = $request->input('office_name');
             $newDispatcher->save();
-            return 'added';
           endif;
-         // if does do nothing
-         return 'notAdded';
+         // If does exist do nothing
+         return redirect('/dispatcher/create')->with('sessionMessage',
+            'Success! '. $request->input('first_name').' '.$request->input('last_name').' has been entered.');
 
     }
 
@@ -104,11 +100,12 @@ class DispatcherController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($first_name, $last_name)
+    public function show()
     {
+        $results = Dispatcher::all();
+        dump($results->toArray());
         return view('admin.dispatcher.show')->with([
-            'first_name' => $first_name,
-            'last_name' => $last_name
+            'results' => $results,
         ]);
     }
 

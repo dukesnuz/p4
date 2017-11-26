@@ -13,13 +13,15 @@
 	<link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
 
 	<script type="text/javascript" src = "http://www.dukesnuz.com/js_libs/dukes.javascript.js"></script>
-	<script type="text/javascript" src = "/js/admin/forms.js?t=<?php echo rand(); ?>"></script>
 	@stack('head')
 </head>
 <body>
 	<header>
 		<h1>Admin area</h1>
 	</header>
+	<div class='sessionMessage'>
+    	<p>{{ session('sessionMessage') }}</p>
+	</div>
 	@yield('content')
 
 	@stack('body')
