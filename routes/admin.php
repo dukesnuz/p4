@@ -16,9 +16,9 @@ Route::domain('p4.'.Config('constants.domain'))->group(function () {
     Route::put('/dispatcher/dispatcher', 'Admin\DispatcherController@store');
 
     // Show all disptach offices
-    Route::get('/dispatcher/show/', 'Admin\DispatcherController@show');
-    // Show a specific contact at a dispatch office
-    Route::get('/dispatcher/contact/{id}/show', 'Admin\DispatcherController@contactShow');
+    Route::get('/dispatcher/office/show/', 'Admin\DispatcherController@officeShow');
+    // Show all contacts at a specific office
+    Route::get('/dispatcher/office/contact/{id}/show', 'Admin\DispatcherController@contactShow');
 
     // Get a contact to edit
     Route::get('/dispatcher/contact/{id}/edit', 'Admin\DispatcherController@contactEdit');
@@ -26,7 +26,7 @@ Route::domain('p4.'.Config('constants.domain'))->group(function () {
     Route::put('/dispatcher/contact/{id}/update', 'Admin\DispatcherController@contactUpdate');
 
     # Deleted a dispatch office
-    Route::put('/dispatcher/dispatcher/delete', 'Admin\DispatcherController@dispatcherDestroy');
+    Route::put('/dispatcher/office/delete', 'Admin\DispatcherController@officeDestroy');
 
 
 

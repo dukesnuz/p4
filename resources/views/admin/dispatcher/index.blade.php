@@ -12,7 +12,7 @@
 <h1>Dispatcher Home</h1>
 
 <ul>
-    <li><a href="/dispatcher/show/">Show all dispatchers</a></li>
-    <li><a href="/dispatcher/create/">Add a dispatcher</a></li>
+    <li><a href="/dispatcher/show/">Show dispatch Offices</a></li>
+    <li><a href="/dispatcher/create/">Add a dispatcher and office</a></li>
 </ul>
 @endsection

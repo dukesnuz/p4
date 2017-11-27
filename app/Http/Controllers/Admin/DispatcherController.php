@@ -102,10 +102,10 @@ class DispatcherController extends Controller
     * @param  int  $id
     * @return \Illuminate\Http\Response
     */
-    public function show()
+    public function officeShow()
     {
         $dispatchers = Dispatcher::all();
-        return view('admin.dispatcher.show')->with([
+        return view('admin.dispatcher.officeshow')->with([
             'dispatchers' => $dispatchers,
         ]);
     }
@@ -180,7 +180,7 @@ class DispatcherController extends Controller
         $updatedContact->country_code = $request->input('country_code');
         $updatedContact->save();
 
-        return redirect('/dispatcher/show')->with('sessionMessage',
+        return redirect('/dispatcher/office/show')->with('sessionMessage',
         'Success! '. $request->input('first_name').' '.$request->input('last_name').' has been updated.');
     }
 
@@ -191,11 +191,11 @@ class DispatcherController extends Controller
     * @return \Illuminate\Http\Response
     */
     # Delete the book and return visitor to list of all books.
-    public function dispatcherDestroy(Request $request)
+    public function officeDestroy(Request $request)
     {
-        ResetDatabase::resetDatabase();
+        //ResetDatabase::resetDatabase();
         $dispatcher = Dispatcher::where('id', '=', $request->input('id') )->delete();
-        return redirect('/dispatcher/show')->with('sessionMessage', "$request->office_name was deleted.");
+        return redirect('/dispatcher/office/show')->with('sessionMessage', "$request->office_name was deleted.");
     }
 
 }

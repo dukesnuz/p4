@@ -11,7 +11,7 @@ Show dispatch office
     @foreach ($dispatchers as $dispatcher)
     <li><a href='contact/{{ $dispatcher['id'] }}/show/'>{{ $dispatcher['office_name'] }}</a>
 
-        <form method='POST' action='/dispatcher/dispatcher/delete'>
+        <form method='POST' action='/dispatcher/office/delete'>
             {{ method_field('put') }}
 
             {{ csrf_field() }}
