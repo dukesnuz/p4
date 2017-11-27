@@ -102,22 +102,22 @@ class DispatcherController extends Controller
     * @param  int  $id
     * @return \Illuminate\Http\Response
     */
-    public function officeShow()
+    public function officesShow()
     {
         $dispatchers = Dispatcher::all();
-        return view('admin.dispatcher.officeshow')->with([
+        return view('admin.dispatcher.offices-show')->with([
             'dispatchers' => $dispatchers,
         ]);
     }
 
-    public function contactShow($id)
+    public function contactsShow($id)
     {
         // below is id for dispatch table
         // get all contacts who are associated with this dispatcher id table
         $dispatcher = Dispatcher::find($id);
 
         $contacts = Contact::all();
-        return view('admin.dispatcher.contactshow')->with([
+        return view('admin.dispatcher.contacts-show')->with([
             'contacts' => $contacts,
             'dispatcher' => $dispatcher,
         ]);
@@ -133,7 +133,7 @@ class DispatcherController extends Controller
         $contact = new Contact();
         $contact = $contact->find($id);
 
-        return view('admin.dispatcher.contactedit')->with([
+        return view('admin.dispatcher.contact-edit')->with([
             'contact' => $contact,
         ]);
     }
@@ -180,7 +180,7 @@ class DispatcherController extends Controller
         $updatedContact->country_code = $request->input('country_code');
         $updatedContact->save();
 
-        return redirect('/dispatcher/office/show')->with('sessionMessage',
+        return redirect('/dispatcher/offices')->with('sessionMessage',
         'Success! '. $request->input('first_name').' '.$request->input('last_name').' has been updated.');
     }
 
@@ -195,7 +195,12 @@ class DispatcherController extends Controller
     {
         //ResetDatabase::resetDatabase();
         $dispatcher = Dispatcher::where('id', '=', $request->input('id') )->delete();
-        return redirect('/dispatcher/office/show')->with('sessionMessage', "$request->office_name was deleted.");
+        return redirect('/dispatcher/offices')->with('sessionMessage', "$request->office_name was deleted.");
     }
 
+    // Catch all route
+    public function missingMethod()
+    {
+        // Not sure on this 
+    }
 }

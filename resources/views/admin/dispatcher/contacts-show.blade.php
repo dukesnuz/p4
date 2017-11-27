@@ -2,7 +2,7 @@
 @extends('layouts.master-admin')
 
 @section('title')
-Show dispatch office
+Show dispatch office contacts
 @endsection
 
 @section('content')

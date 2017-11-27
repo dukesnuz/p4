@@ -11,7 +11,7 @@ Edit a dispatch contact
 @section('content')
 Form to edit a dispatch contact
 
-<form action='/dispatcher/contact/{{ $contact->id }}/update' method='POST'>
+<form action='/dispatcher/contact/{{ $contact->id }}' method='POST'>
     {{ method_field('put') }}
 
     {{ csrf_field() }}
