@@ -23,7 +23,6 @@
     	<p>{{ session('sessionMessage') }}</p>
 	</div>
 	@yield('content')
-
 	@stack('body')
 </body>
 </html>
