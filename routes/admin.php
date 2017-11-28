@@ -1,27 +1,27 @@
 <?php
 /********************************************
-* See https://github.com/susanBuck/dwa15-fall2017/issues/161
+* Routes for administrators
 */
 
 // Routes for Admin
 Route::domain('p4.'.Config('constants.domain'))->group(function () {
     Route::get('/', function () {
-       return view('admin.index');
+        return view('admin.index');
     });
 
     Route::get('/dispatchers/', 'Admin\DispatcherController@index');
 
-    //  Create a dispatch office and contacts
-    Route::get('/dispatcher/create', 'Admin\DispatcherController@create');
-    Route::put('/dispatcher/dispatcher', 'Admin\DispatcherController@store');
+    //  Create a dispatch office and contact
+    Route::get('/dispatcher/contact/create', 'Admin\DispatcherController@contactCreate');
+    Route::put('/dispatcher/contact', 'Admin\DispatcherController@contactStore');
 
     // Show all disptach offices
     Route::get('/dispatcher/offices', 'Admin\DispatcherController@officesShow');
     // Show all contacts at a specific office
-    Route::get('/dispatcher/office/contacts/{id}', 'Admin\DispatcherController@contactsShow');
+    Route::get('/dispatcher/office/{id}/contacts', 'Admin\DispatcherController@contactsShow');
 
     // Get a contact to edit
-    Route::get('/dispatcher/contact/{id}/edit', 'Admin\DispatcherController@contactEdit');
+    Route::get('/dispatcher/office/contact/{contactid}/edit', 'Admin\DispatcherController@contactEdit');
     // Process form to edit the contact
     Route::put('/dispatcher/contact/{id}', 'Admin\DispatcherController@contactUpdate');
 

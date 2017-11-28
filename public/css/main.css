@@ -1,3 +1,29 @@
 body {
 	background-color: lightblue;
 }
+
+nav ul{
+	list-style: none;
+
+
+}
+nav li{
+	float:left;
+	background-color: aqua;
+	padding: 5px 10px;
+	margin: 0;
+	margin-right: 3px;
+}
+ nav li a{
+	color: #fff;
+	display: inline-block;
+	text-decoration: none;
+}
+.content {
+   clear: both;
+   background-color: #fff;
+   padding: 50px 100px;
+}
+.sessionMessage p{
+   font-weight: bold;
+}

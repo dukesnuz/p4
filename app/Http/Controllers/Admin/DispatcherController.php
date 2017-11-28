@@ -6,8 +6,9 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Contact;
 use App\Dispatcher;
-use App\Utilities\ResetDatabase;
 use App\CustomStuff\Helper;
+use App\Utilities\ResetDatabase;
+//ResetDatabase::resetDatabase();
 
 class DispatcherController extends Controller
 {
@@ -26,10 +27,8 @@ class DispatcherController extends Controller
     *
     * @return \Illuminate\Http\Response
     */
-    public function create()
+    public function contactCreate()
     {
-        //ResetDatabase::resetDatabase();
-
         $results = Dispatcher::orderBy('office_name')->get();
         if($results->isNotEmpty()):
             return view('admin.dispatcher.create')->with([
@@ -47,19 +46,20 @@ class DispatcherController extends Controller
     * @param  \Illuminate\Http\Request  $request
     * @return \Illuminate\Http\Response
     */
-    public function store(Request $request)
+    public function contactStore(Request $request)
     {
         // validate data
         $this->validate($request, [
             'office_name' => 'required',
             'first_name' => 'required',
             'last_name' => 'required',
+            'title' => 'required',
             'email' => 'required|email',
             'telephone' => 'phone:US,BE',
             'mobile' => 'phone:US,BE',
+            'mobile_carrier' => 'required',
             'fax' => 'phone:US,BE',
             'country_code' => 'numeric'
-
         ]);
 
         // Strip extra characters from numbers
@@ -91,7 +91,8 @@ class DispatcherController extends Controller
             $newDispatcher->save();
         endif;
         // If does exist do nothing
-        return redirect('/dispatcher/create')->with('sessionMessage',
+        // In future redirect to add this dispatcher's address
+        return redirect('/dispatcher/contact/create')->with('sessionMessage',
         'Success! '. $request->input('first_name').' '.$request->input('last_name').' has been entered.');
 
     }
@@ -132,17 +133,21 @@ class DispatcherController extends Controller
     {
         $contact = new Contact();
         $contact = $contact->find($id);
-
-        return view('admin.dispatcher.contact-edit')->with([
-            'contact' => $contact,
-        ]);
+        dump($contact);
+        if(!$contact) {
+            return back()->withInput()->with('sessionMessage', "error $id");
+        } else {
+            return view('admin.dispatcher.contact-edit')->with([
+                'contact' => $contact,
+            ]);
+        }
     }
 
     /**
     * Update the specified resource in storage.
     *
     * @param  \Illuminate\Http\Request  $request
-    * @param  int  $id
+    * @param  int $id
     * @return \Illuminate\Http\Response
     */
     public function contactUpdate(Request $request, $id)
@@ -151,9 +156,11 @@ class DispatcherController extends Controller
         $this->validate($request, [
             'first_name' => 'required',
             'last_name' => 'required',
+            'title' => 'required',
             'email' => 'required|email',
             'telephone' => 'phone:US,BE',
             'mobile' => 'phone:US,BE',
+            'mobile_carrier' => 'required',
             'fax' => 'phone:US,BE',
             'country_code' => 'numeric'
         ]);
@@ -166,7 +173,6 @@ class DispatcherController extends Controller
 
         $updatedContact = new Contact();
         $updatedContact = $updatedContact->find($id);
-
         $updatedContact->first_name = $request->input('first_name');
         $updatedContact->last_name = $request->input('last_name');
         $updatedContact->title = $request->input('title');
@@ -187,20 +193,13 @@ class DispatcherController extends Controller
     /**
     * Remove the specified resource from storage.
     *
-    * @param  int  $id
+    * @param  int  $request
     * @return \Illuminate\Http\Response
     */
-    # Delete the book and return visitor to list of all books.
+    // Delete a contact, using soft delete
     public function officeDestroy(Request $request)
     {
-        //ResetDatabase::resetDatabase();
-        $dispatcher = Dispatcher::where('id', '=', $request->input('id') )->delete();
+        $dispatcher = Dispatcher::destroy($request->input('id'));
         return redirect('/dispatcher/offices')->with('sessionMessage', "$request->office_name was deleted.");
-    }
-
-    // Catch all route
-    public function missingMethod()
-    {
-        // Not sure on this 
     }
 }

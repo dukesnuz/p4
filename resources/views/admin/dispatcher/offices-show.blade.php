@@ -9,7 +9,7 @@ Show dispatch office
 <h2>Dispatch Offices</h2>
 <ul>
     @foreach ($dispatchers as $dispatcher)
-    <li><a href='office/contacts/{{ $dispatcher['id'] }}'>{{ $dispatcher['office_name'] }}</a>
+    <li><a href='office/{{ $dispatcher['id'] }}/contacts'>{{ $dispatcher['office_name'] }}</a>
 
         <form method='POST' action='/dispatcher/office/delete'>
             {{ method_field('put') }}

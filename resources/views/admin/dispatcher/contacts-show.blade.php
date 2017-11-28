@@ -29,7 +29,7 @@ Show dispatch office contacts
         <td>{{ $contact['extension'] }}</td>
         <td>{{ $contact['mobile'] }}</td>
         <td>{{ $contact['fax'] }}</td>
-        <td><a href='/dispatcher/contact/{{ $contact['id'] }}/edit'>Edit</a></td>
+        <td><a href='/dispatcher/office/contact/{{ $contact['id'] }}/edit'>Edit</a></td>
     </tr>
     @endforeach
 </table>

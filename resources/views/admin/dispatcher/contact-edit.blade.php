@@ -31,11 +31,12 @@ Form to edit a dispatch contact
     <p>
         <label for="title">Select a title</label>
         <select name='title' id='title'>
-            <option value='&nbsp;'>&nbsp;</option>
-            <option value='dispatcher'>Dispatcher</option>
-            <option value='sales'>Sales</option>
+            <option value=''></option>
+            <option value='dispatcher' {{ (old('title', $contact->title) == 'dispatcher')? 'selected' : '' }}>Dispatcher</option>
+            <option value='sales' {{ (old('title', $contact->title) == 'sales')? 'selected' : '' }}>Sales</option>
         </select>
     </p>
+    @include('modules.error-field', ['fieldName' => 'title'])
 
     <p>
         <label for='email'>Email</label>
@@ -63,10 +64,12 @@ Form to edit a dispatch contact
     <p>
         <label for="mobile_carrier">Mobile Carrier</label>
         <select name='mobile_carrier' id='mobile_carrier'>
-            <option value='sprint'>Sprint</option>
-            <option value='verizon'>Verizon</option>
+            <option value=''></option>
+            <option value='sprint' {{ (old('mobile_carrier', $contact->mobile_carrier) == 'sprint') ? 'selected' : '' }}>Sprint</option>
+            <option value='verizon' {{ (old('mobile_carrier', $contact->mobile_carrier) == 'verizon') ? 'selected' : '' }}>Verizon</option>
         </select>
     </p>
+    @include('modules.error-field', ['fieldName' => 'mobile_carrier'])
 
     <p>
         <label for='fax'>Fax</label>
@@ -77,7 +80,8 @@ Form to edit a dispatch contact
     <p>
         <label for="country_code">Select a Country Code</label>
         <select name='country_code' id='country_code'>
-            <option value="1">1</option>
+            <option value=''></option>
+            <option value='1' {{ (old('country_code', $contact->country_code) == '1') ? 'selected' : '' }}>1</option>
         </select>
     </p>
     @include('modules.error-field', ['fieldName' => 'country_code'])
