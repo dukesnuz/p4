@@ -94,7 +94,6 @@ class DispatcherController extends Controller
         // In future redirect to add this dispatcher's address
         return redirect('/dispatcher/contact/create')->with('sessionMessage',
         'Success! '. $request->input('first_name').' '.$request->input('last_name').' has been entered.');
-
     }
 
     /**
@@ -133,7 +132,6 @@ class DispatcherController extends Controller
     {
         $contact = new Contact();
         $contact = $contact->find($id);
-        dump($contact);
         if(!$contact) {
             return back()->withInput()->with('sessionMessage', "error $id");
         } else {
