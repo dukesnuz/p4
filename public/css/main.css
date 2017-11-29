@@ -1,29 +1,90 @@
-body {
-	background-color: lightblue;
+body{
+	background-color: #fff;
+	font-family: "Gentium Basic", serif;
+	overflow-x: hidden;
 }
-
-nav ul{
-	list-style: none;
-
-
+header, footer{
+	color: #FF9B49;
+	background-color: #454341;
 }
-nav li{
-	float:left;
-	background-color: aqua;
-	padding: 5px 10px;
-	margin: 0;
-	margin-right: 3px;
+footer{
 }
- nav li a{
-	color: #fff;
-	display: inline-block;
-	text-decoration: none;
-}
-.content {
-   clear: both;
-   background-color: #fff;
-   padding: 50px 100px;
+.content{
+	clear: both;
+	background-color: #fff;
+	padding: 50px 100px;
 }
 .sessionMessage p{
-   font-weight: bold;
+	font-weight: bold;
+}
+
+/*****
+* main admin navigation
+*/
+#navWrap ul{
+	list-style: none;
+	position: relative;
+	float:left;
+}
+#navWrap ul a{
+	display: block;
+	text-decoration: none;
+	color: #000;
+	font-weight: bold;
+	letter-spacing: 2px
+}
+#navWrap ul li{
+	position:relative;
+	float:left;
+	padding: 1px 5px;
+	background-color: #FF9B49;
+	margin-right: 5px;
+}
+#navWrap ul li:hover{
+	background-color: #fff;
+	color:#454341;
+	border: none;
+}
+#navWrap ul ul{
+	display: none;
+	position: absolute;
+	background-color: #454341;
+}
+#navWrap ul li:hover > ul{
+	display: block;
+}
+.item{
+	border: 1px solid #000;
+}
+.button, .buttonAlert{
+	padding: 5px;
+	border-radius: 8px;
+	cursor: pointer;
+}
+.buttonAlert{
+	color: #fff;
+	background-color: #FF0000;
+}
+.button{
+	background-color: #FF9B49;
+}
+.list li{
+	list-style: none;
+	margin-bottom: 8px;
+	border: 1px dotted;
+	width: 100px;
+	padding: 5px;
+	text-align: center;
+	background-color: #ccc;
+}
+
+/***
+* Links
+*/
+a{
+	color: #000;
+}
+.list a{
+	text-decoration: none;
+	display: block;
 }
