@@ -16,6 +16,7 @@ Show dispatch office contacts
         <th>Telephone</th>
         <th>Ext</th>
         <th>Mobile</th>
+        <th>Carrier</th>
         <th>Fax</th>
         <th>Edit</th>
     </tr>
@@ -28,6 +29,7 @@ Show dispatch office contacts
         <td>{{ $contact['telephone'] }}</td>
         <td>{{ $contact['extension'] }}</td>
         <td>{{ $contact['mobile'] }}</td>
+        <td>{{ $contact['mobile_carrier'] }}</td>
         <td>{{ $contact['fax'] }}</td>
         <td><a href='/dispatcher/office/contact/{{ $contact['id'] }}/edit'>Edit</a></td>
     </tr>
