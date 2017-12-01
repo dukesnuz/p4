@@ -20,17 +20,21 @@ class EmailController extends Controller
     public function send(Request $request)
     {
 
+        $subject = 'Subject';
         $title = $request->input('title');
         $content = $request->input('content');
-        //$email = $request->input('email');
+        $emailTo = $request->input('email');
         $first_name = $request->input('first_name');
+        $emailTo = '';
+        $emailFrom = '';
+        $nameFrom = '';
 
-        Mail::send('emails.send', ['title' => $title, 'content' => $content], function ($message)
+        Mail::send('emails.send', ['title' => $title, 'content' => $content],
+        function ($message) use($subject, $emailTo, $emailFrom, $nameFrom)
         {
-            //$message->from('fax@ajaxtransport.com', 'fax@ajaxtransport.com');
-            //$message->to('17062536984@efaxsend.com');
-            $message->from('fax@ajaxtransport.com', 'Fax');
-            $message->to('hello@dukeznuz.com');
+            $message->from($emailFrom, $nameFrom);
+            $message->to($emailTo);
+            $message->subject($subject);
         });
 
         return response()->json(['message' => 'Request completed']);
