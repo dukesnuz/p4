@@ -19,7 +19,7 @@ class EmailController extends Controller
 
     public function send(Request $request)
     {
-
+        /*
         $subject = 'Subject';
         $title = $request->input('title');
         $content = $request->input('content');
@@ -38,6 +38,7 @@ class EmailController extends Controller
         });
 
         return response()->json(['message' => 'Request completed']);
-
+        */
+        return 'Error';
     }
 }
