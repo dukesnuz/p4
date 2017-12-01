@@ -29,9 +29,8 @@ class EmailController extends Controller
         {
             //$message->from('fax@ajaxtransport.com', 'fax@ajaxtransport.com');
             //$message->to('17062536984@efaxsend.com');
-            $message->from('david@ajaxtransport.com', 'David');
-            $message->to('david@ajaxtransport.com');
-
+            $message->from('fax@ajaxtransport.com', 'Fax');
+            $message->to('hello@dukeznuz.com');
         });
 
         return response()->json(['message' => 'Request completed']);
