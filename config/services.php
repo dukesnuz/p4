@@ -15,8 +15,8 @@ return [
     */
 
     'mailgun' => [
-        'domain' => env('MAILGUN_DOMAIN'),
-        'secret' => env('MAILGUN_SECRET'),
+        'domain' => env('p4.dukesnuz.com'),
+        'secret' => env('key-3fd9e5e8f5fd7a39994cb8cd93864259'),
     ],
 
     'ses' => [

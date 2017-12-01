@@ -33,7 +33,7 @@ class DispatcherController extends Controller
         if($results->isNotEmpty()):
             return view('admin.dispatcher.create')->with([
                 'results' => $results,
-            ]);;
+            ]);
         endif;
         return view('admin.dispatcher.create')->with([
             'results' => '',
@@ -200,4 +200,5 @@ class DispatcherController extends Controller
         $dispatcher = Dispatcher::destroy($request->input('id'));
         return redirect('/dispatcher/offices')->with('sessionMessage', "$request->office_name was deleted.");
     }
+
 }

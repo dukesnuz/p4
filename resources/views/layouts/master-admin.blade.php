@@ -24,6 +24,7 @@
                         <li><a href='/dispatchers/'>Dispatchers</a></li>
                         <li><a href='/dispatcher/offices/'>Offices</a></li>
                         <li><a href='/dispatcher/contact/create/'>Add</a></li>
+                        <li><a href='/dispatcher/mail/'>Mail</a></li>
                     </ul>
                 </li>
                 <li class='item'><a href='#'>Carriers</a>
