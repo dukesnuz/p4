@@ -35,7 +35,6 @@ footer{
 }
 #navWrap ul li{
 	position:relative;
-	float:left;
 	padding: 1px 5px;
 	background-color: #FF9B49;
 	margin-right: 5px;
@@ -43,7 +42,6 @@ footer{
 #navWrap ul li:hover{
 	background-color: #fff;
 	color:#454341;
-	border: none;
 }
 #navWrap ul ul{
 	display: none;
@@ -55,6 +53,9 @@ footer{
 }
 .item{
 	border: 1px solid #000;
+}
+li.item {
+    float: inherit;
 }
 .button, .buttonAlert{
 	padding: 5px;
