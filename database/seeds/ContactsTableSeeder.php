@@ -34,7 +34,8 @@ class ContactsTableSeeder extends Seeder
                 'mobile' => $contact[6],
                 'extension' => $contact[7],
                 'fax' => $contact[8],
-                'country_code' => $contact[9]
+                'country_code' => $contact[9],
+                'dispatcher_id' => 1,
             ]);
             $count--;
         }
