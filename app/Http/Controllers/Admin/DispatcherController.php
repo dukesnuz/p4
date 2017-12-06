@@ -41,7 +41,7 @@ class DispatcherController extends Controller
     }
 
     /**
-    * Store a newly created resource in storage.
+    * Store a new contact and if office name does not exist add a new office
     *
     * @param  \Illuminate\Http\Request  $request
     * @return \Illuminate\Http\Response
@@ -63,12 +63,22 @@ class DispatcherController extends Controller
         ]);
 
         // Strip extra characters from numbers
-        $num = new Helper();
-        $telephone = $num->stripNumber($request->input('telephone'));
-        $mobile = $num->stripNumber($request->input('mobile'));
-        $fax = $num->stripNumber($request->input('fax'));
+        $telephone = Helper::stripNumber($request->input('telephone'));
+        $mobile = Helper::stripNumber($request->input('mobile'));
+        $fax = Helper::stripNumber($request->input('fax'));
+
+        // Check if office name already in dispatchers table, if not then add.
+        if($request->input('id') == null):
+            $dispatcher_id = Dispatcher::updateOrCreate(
+                ['office_name' => $request->input('office_name')],
+                ['office_name' => $request->input('office_name')]
+            );
+        else:
+            $dispatcher_id = $request->input('id');
+        endif;
 
         $newContact = new Contact();
+
         $newContact->first_name = $request->input('first_name');
         $newContact->last_name = $request->input('last_name');
         $newContact->title = $request->input('title');
@@ -80,17 +90,9 @@ class DispatcherController extends Controller
         $newContact->extension = $request->input('extension');
         $newContact->fax = $fax;
         $newContact->country_code = $request->input('country_code');
+        $newContact->dispatcher()->associate($dispatcher_id);
         $newContact->save();
 
-        // Get dispatcher from office and see if it exists
-        $result = Dispatcher::find($request->input('id'));
-        // If does not add to database
-        if($result == null):
-            $newDispatcher = new Dispatcher();
-            $newDispatcher->office_name = $request->input('office_name');
-            $newDispatcher->save();
-        endif;
-        // If does exist do nothing
         // In future redirect to add this dispatcher's address
         return redirect('/dispatcher/contact/create')->with('sessionMessage',
         'Success! '. $request->input('first_name').' '.$request->input('last_name').' has been entered.');
@@ -105,6 +107,7 @@ class DispatcherController extends Controller
     public function officesShow()
     {
         $dispatchers = Dispatcher::all();
+
         return view('admin.dispatcher.offices-show')->with([
             'dispatchers' => $dispatchers,
         ]);
@@ -114,91 +117,92 @@ class DispatcherController extends Controller
     {
         // below is id for dispatch table
         // get all contacts who are associated with this dispatcher id table
-        $dispatcher = Dispatcher::find($id);
-
-        $contacts = Contact::all();
-        return view('admin.dispatcher.contacts-show')->with([
-            'contacts' => $contacts,
-            'dispatcher' => $dispatcher,
+        //$dispatcher = Dispatcher::find($id);
+        $contacts = Contact::with('dispatcher')->get();
+        dump($contacts);
+        //$contacts = Contact::all();
+        /*return view('admin.dispatcher.contacts-show')->with([
+        'contacts' => $contacts,
+        'dispatcher' => $dispatcher,
+    ]);
+    */
+}
+/**
+* Show the form for editing the specified resource.
+*
+* @param  int  $id
+* @return \Illuminate\Http\Response
+*/
+public function contactEdit($id)
+{
+    $contact = new Contact();
+    $contact = $contact->find($id);
+    if(!$contact) {
+        return back()->withInput()->with('sessionMessage', "error $id");
+    } else {
+        return view('admin.dispatcher.contact-edit')->with([
+            'contact' => $contact,
         ]);
     }
-    /**
-    * Show the form for editing the specified resource.
-    *
-    * @param  int  $id
-    * @return \Illuminate\Http\Response
-    */
-    public function contactEdit($id)
-    {
-        $contact = new Contact();
-        $contact = $contact->find($id);
-        if(!$contact) {
-            return back()->withInput()->with('sessionMessage', "error $id");
-        } else {
-            return view('admin.dispatcher.contact-edit')->with([
-                'contact' => $contact,
-            ]);
-        }
-    }
+}
 
-    /**
-    * Update the specified resource in storage.
-    *
-    * @param  \Illuminate\Http\Request  $request
-    * @param  int $id
-    * @return \Illuminate\Http\Response
-    */
-    public function contactUpdate(Request $request, $id)
-    {
-        // validate data
-        $this->validate($request, [
-            'first_name' => 'required',
-            'last_name' => 'required',
-            'title' => 'required',
-            'email' => 'required|email',
-            'telephone' => 'phone:US,BE',
-            'mobile' => 'phone:US,BE',
-            'mobile_carrier' => 'required',
-            'fax' => 'phone:US,BE',
-            'country_code' => 'numeric'
-        ]);
+/**
+* Update the specified resource in storage.
+*
+* @param  \Illuminate\Http\Request  $request
+* @param  int $id
+* @return \Illuminate\Http\Response
+*/
+public function contactUpdate(Request $request, $id)
+{
+    // validate data
+    $this->validate($request, [
+        'first_name' => 'required',
+        'last_name' => 'required',
+        'title' => 'required',
+        'email' => 'required|email',
+        'telephone' => 'phone:US,BE',
+        'mobile' => 'phone:US,BE',
+        'mobile_carrier' => 'required',
+        'fax' => 'phone:US,BE',
+        'country_code' => 'numeric'
+    ]);
 
-        // Strip extra characters from numbers
-        $num = new Helper();
-        $telephone = $num->stripNumber($request->input('telephone'));
-        $mobile = $num->stripNumber($request->input('mobile'));
-        $fax = $num->stripNumber($request->input('fax'));
+    // Strip extra characters from numbers
+    $telephone = Helper::stripNumber($request->input('telephone'));
+    $mobile = Helper::stripNumber($request->input('mobile'));
+    $fax = Helper::stripNumber($request->input('fax'));
 
-        $updatedContact = new Contact();
-        $updatedContact = $updatedContact->find($id);
-        $updatedContact->first_name = $request->input('first_name');
-        $updatedContact->last_name = $request->input('last_name');
-        $updatedContact->title = $request->input('title');
-        $updatedContact->email = $request->input('email');
-        $updatedContact->email_hash = sha1($request->input('email'));
-        $updatedContact->telephone = $telephone;
-        $updatedContact->mobile = $mobile;
-        $updatedContact->mobile_carrier = $request->input('mobile_carrier');
-        $updatedContact->extension = $request->input('extension');
-        $updatedContact->fax = $fax;
-        $updatedContact->country_code = $request->input('country_code');
-        $updatedContact->save();
+    $updatedContact = new Contact();
+    $updatedContact = $updatedContact->find($id);
+    $updatedContact->first_name = $request->input('first_name');
+    $updatedContact->last_name = $request->input('last_name');
+    $updatedContact->title = $request->input('title');
+    $updatedContact->email = $request->input('email');
+    $updatedContact->email_hash = sha1($request->input('email'));
+    $updatedContact->telephone = $telephone;
+    $updatedContact->mobile = $mobile;
+    $updatedContact->mobile_carrier = $request->input('mobile_carrier');
+    $updatedContact->extension = $request->input('extension');
+    $updatedContact->fax = $fax;
+    $updatedContact->country_code = $request->input('country_code');
+    $updatedContact->save();
 
-        return redirect('/dispatcher/offices')->with('sessionMessage',
-        'Success! '. $request->input('first_name').' '.$request->input('last_name').' has been updated.');
-    }
+    return redirect('/dispatcher/offices')->with('sessionMessage',
+    'Success! '. $request->input('first_name').' '.$request->input('last_name').' has been updated.');
+}
 
-    /**
-    * Remove the specified resource from storage.
-    *
-    * @param  int  $request
-    * @return \Illuminate\Http\Response
-    */
-    // Delete a contact, using soft delete
-    public function officeDestroy(Request $request)
-    {
-        $dispatcher = Dispatcher::destroy($request->input('id'));
-        return redirect('/dispatcher/offices')->with('sessionMessage', "$request->office_name was deleted.");
-    }
+/**
+* Remove the specified resource from storage.
+*
+* @param  int  $request
+* @return \Illuminate\Http\Response
+*/
+// Delete a contact, using soft delete
+public function officeDestroy(Request $request)
+{
+    $dispatcher = Dispatcher::destroy($request->input('id'));
+    return redirect('/dispatcher/offices')->with('sessionMessage', "$request->office_name was deleted.");
+}
 
 }

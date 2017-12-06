@@ -15,7 +15,7 @@ class ConnectContactsAndDispatchers extends Migration
     {
         Schema::table('contacts', function(Blueprint $table) {
             $table->integer('dispatcher_id')->unsigned();
-            $table->foreign('dispatcher_id')->references('id')->on('contacts');
+            $table->foreign('dispatcher_id')->references('id')->on('dispatchers');
         });
     }
 

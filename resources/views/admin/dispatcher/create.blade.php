@@ -21,7 +21,7 @@ Form to add a dispatcher
         <label for='office_names'>Select an Office</label>
         <select name='office_name' id="office_names">
             <option value=''></option>
-            <option value='new'>New Office</option>
+            <option value='new'>Create New Office</option>
             @foreach($results as $result):
             <option value='{{ $result->id }}' {{ (old('result') == $result->id) ? 'selected' : '' }}>{{ $result->office_name }}</option>
             @endforeach
@@ -34,7 +34,7 @@ Form to add a dispatcher
             <label for='office_name'>New Office Name</label>
             <input type='text' name='office_name' id='office_name' value='{{ old('office_name') }}'>
         </p>
-        <input type='hidden' name='id' id='id' value='{{ old('id') }}'>
+        <input type='text' name='id' id='id' value='{{ old('id') }}'>
     </div>
     @include('modules.error-field', ['fieldName' => 'office_name'])
 

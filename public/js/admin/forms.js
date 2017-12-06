@@ -1,6 +1,6 @@
-// Get selected index value and add tp form field
-function getOffice(){
-    $('new_office').style.display='none';
+// Get selected index value and add to form field
+function getOffice() {
+    //$('new_office').style.display='none';
     var select = $('office_names');
     var text = select.options[select.selectedIndex].text;
     var value = select.options[select.selectedIndex].value;
@@ -14,12 +14,14 @@ function getOffice(){
     }
 }
 // Clear select index value if new office created
-function clearOffice(){
+function clearOffice() {
     $('id').value = '';
 }
+
 window.onload = function(){
     var selected = $('office_names');
     selected.onchange = getOffice;
-    $('new_office').style.display='none';
+    //$('new_office').style.display='none';
     $('office_name').onkeyup = clearOffice;
+
 }
