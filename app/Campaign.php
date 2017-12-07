@@ -8,6 +8,7 @@ class Campaign extends Model
 {
     public function Contacts()
     {
-        return $this->belongsToMany('App\Contact')->withTimestamp();
+        // Using withTimestamps() pivot table will auto update
+        return $this->belongsToMany('App\Contact')->withTimestamps();
     }
 }

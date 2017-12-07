@@ -14,9 +14,9 @@ class CampaignsTableSeeder extends Seeder
     {
         $campaigns = [
             ['Campaign 1', 'Subject 1', 'Title 1', 'Message 1'],
-            ['Campaign 1', 'Subject 2', 'Title 2', 'Message 2'],
-            ['Campaign 1', 'Subject 3', 'Title 3', 'Message 3'],
-            ['Campaign 1', 'Subject 4', 'Title 4', 'Message 4'],
+            ['Campaign 2', 'Subject 2', 'Title 2', 'Message 2'],
+            ['Campaign 3', 'Subject 3', 'Title 3', 'Message 3'],
+            ['Campaign 4', 'Subject 4', 'Title 4', 'Message 4'],
         ];
 
         $count = count($campaigns);

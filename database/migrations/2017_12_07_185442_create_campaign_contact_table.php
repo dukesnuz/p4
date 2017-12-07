@@ -18,7 +18,7 @@ class CreateCampaignContactTable extends Migration
             $table->timestamps();
             $table->integer('contact_id')->unsigned();
             $table->integer('campaign_id')->unsigned();
-            $table->dateTime('opt_out')->nullable();
+            $table->timestamp('opt_out')->nullable();
             $table->softDeletes();
 
             // Create foreign keys

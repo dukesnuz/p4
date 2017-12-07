@@ -119,13 +119,13 @@ class DispatcherController extends Controller
         // get all contacts who are associated with this dispatcher id table
         //$dispatcher = Dispatcher::find($id);
         $contacts = Contact::with('dispatcher')->get();
-        dump($contacts);
+        dd($contacts);
         //$contacts = Contact::all();
-        /*return view('admin.dispatcher.contacts-show')->with([
+        return view('admin.dispatcher.contacts-show')->with([
         'contacts' => $contacts,
         'dispatcher' => $dispatcher,
     ]);
-    */
+
 }
 /**
 * Show the form for editing the specified resource.
