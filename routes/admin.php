@@ -26,9 +26,8 @@ Route::domain('p4.'.Config('constants.domain'))->group(function () {
     Route::put('/dispatcher/contact/{id}', 'Admin\DispatcherController@contactUpdate');
 
     // Delete a dispatch office
-    // see notes from instructor
-    //crate a confirm page
-    Route::put('/dispatcher/office/destroy', 'Admin\DispatcherController@officeDestroy');
+    Route::get('/dispatcher/office/{name}/{id}/delete', 'Admin\DispatcherController@officeDelete');
+    Route::delete('/dispatcher/office', 'Admin\DispatcherController@officeDestroy');
 
     // Route for email
     Route::get('/dispatcher/mail', 'Admin\EmailController@mail');

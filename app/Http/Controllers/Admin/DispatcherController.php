@@ -108,10 +108,13 @@ class DispatcherController extends Controller
     public function officesShow()
     {
         $dispatchers = Dispatcher::all();
-
-        return view('admin.dispatcher.offices-show')->with([
-            'dispatchers' => $dispatchers,
-        ]);
+        if($dispatchers->count() > 0):
+            return view('admin.dispatcher.offices-show')->with([
+                'dispatchers' => $dispatchers,
+            ]);
+        else:
+            return view('admin.dispatcher.offices-show');
+        endif;
     }
 
     // Show all the contacts for a specific office
@@ -197,21 +200,37 @@ class DispatcherController extends Controller
             $updatedContact->country_code = $request->input('country_code');
             $updatedContact->save();
 
-            return redirect('/dispatcher/offices')->with('sessionMessage',
+            return redirect('/dispatcher.offices')->with('sessionMessage',
             'Success! '. $request->input('first_name').' '.$request->input('last_name').' has been updated.');
         }
 
+        /*
+        * Delete an office, takes user to page to delete or cancel
+        */
+        public function officeDelete($name, $id)
+        {
+            $nameNew = ucfirst(str_replace('-', ' ', $name));
+            return view('admin.dispatcher.office-delete')->with([
+                'id' => $id,
+                'nameNew' => $nameNew,
+            ]);
+        }
         /**
         * Remove the specified resource from storage.
         *
         * @param  int  $request
         * @return \Illuminate\Http\Response
         */
-        // Delete a contact, using soft delete
+        // Delete an office, using soft delete
         public function officeDestroy(Request $request)
         {
+            $result = Dispatcher::find($request->input('id'));
+
+            if(!$result) {
+                return redirect('/dispatcher/offices')->with('sessionMessage', "OOppss! System error! Office was not deleted.");
+            }
             $dispatcher = Dispatcher::destroy($request->input('id'));
-            return redirect('/dispatcher/offices')->with('sessionMessage', "$request->office_name was deleted.");
+            return redirect('/dispatcher/offices')->with('sessionMessage', "$result->office_name was deleted.");
         }
 
     }

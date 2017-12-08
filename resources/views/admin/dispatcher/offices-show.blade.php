@@ -2,45 +2,27 @@
 @extends('layouts.master-admin')
 
 @section('title')
-Show dispatch office
+Dispatch offices
 @endsection
-
-@push('head')
-
-@endpush
 
 @section('content')
 <h2>Dispatch Offices</h2>
+@if(isset($dispatchers))
 <ul class='list'>
-    <p id='click'>click</p>
     @foreach ($dispatchers as $dispatcher)
-    <li><a href='office/{{ $dispatcher['id'] }}/contacts' class="button">{{ $dispatcher['office_name'] }}</a>
-
-        <form method='POST' action='/dispatcher/office/destroy'>
-
-            {{ method_field('put') }}
-
-            {{ csrf_field() }}
-
-            <input type='hidden' name='id' id='{{ $dispatcher['id'] }}' value='{{ $dispatcher['id'] }}'>
-            <input class="buttonAlert" type='submit' value='Delete'>
-        </form>
-
-    </li>
+    <ul>
+        <li><a href='office/{{ $dispatcher['id'] }}/contacts' class="button">{{ $dispatcher['office_name'] }}</a></li>
+        <li><a href='/dispatcher/office/{{ kebab_case($dispatcher['office_name']) }}/{{ $dispatcher['id'] }}/delete'  class="buttonAlert" >Delete</a></li>
+    </ul>
     @endforeach
 </ul>
-@endsection
+@else
+<div class='sessionMessage'>
+    <p>
+        OOppss! There are no offices. Would you like to
+        <a href='/dispatcher/contact/create'>add an office and a contact</a>?
+    </p>
+</div>
+@endif
 
-<script>
-function deleteOffice() {
-    console.log('delete');
-}
-// Veryfy if user wants to delete the office
-window.onload = function() {
-    $('click').addEventListener('mouseover', function(e) {
-        deleteOffice();
-        console.log(e.target);
-        e.preventDefault();
-    }, true);
-}
-</script>
+@endsection

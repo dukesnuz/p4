@@ -69,16 +69,22 @@ li.item {
 .button{
 	background-color: #FF9B49;
 }
+.list ul{
+	padding-left: 0;
+}
 .list li{
 	list-style: none;
-	margin-bottom: 8px;
 	border: 1px dotted;
 	width: 100px;
-	padding: 5px;
+
+	padding-left: 0;
 	text-align: center;
 	background-color: #ccc;
 }
-
+.list li:nth-child(even){
+	margin-bottom: 15px;
+	border-top: none;
+}
 /***
 * Links
 */
