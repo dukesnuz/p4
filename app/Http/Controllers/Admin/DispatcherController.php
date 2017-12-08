@@ -200,7 +200,7 @@ class DispatcherController extends Controller
             $updatedContact->country_code = $request->input('country_code');
             $updatedContact->save();
 
-            return redirect('/dispatcher.offices')->with('sessionMessage',
+            return redirect('/dispatcher/offices')->with('sessionMessage',
             'Success! '. $request->input('first_name').' '.$request->input('last_name').' has been updated.');
         }
 
@@ -227,10 +227,10 @@ class DispatcherController extends Controller
             $result = Dispatcher::find($request->input('id'));
 
             if(!$result) {
-                return redirect('/dispatcher/offices')->with('sessionMessage', "OOppss! System error! Office was not deleted.");
+                return redirect('dispatcher/offices')->with('sessionMessage', "OOppss! System error! Office was not deleted.");
             }
             $dispatcher = Dispatcher::destroy($request->input('id'));
-            return redirect('/dispatcher/offices')->with('sessionMessage', "$result->office_name was deleted.");
+            return redirect('dispatcher/offices')->with('sessionMessage', "$result->office_name was deleted.");
         }
 
     }
