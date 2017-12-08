@@ -9,7 +9,7 @@ Edit a dispatch contact
 @endpush
 
 @section('content')
-Form to edit a dispatch contact
+<h3>Edit a dispatch contact</h3>
 
 <form action='/dispatcher/contact/{{ $contact->id }}' method='POST'>
     {{ method_field('put') }}
@@ -18,20 +18,20 @@ Form to edit a dispatch contact
 
     <P>
         <label for='first_name'>First Name</label>
-        <input type='text' name='first_name' value='{{ old('first_name', $contact->first_name) }}'>
+        <input type='text' id='first_name' name='first_name' value='{{ old('first_name', $contact->first_name) }}'>
     </p>
     @include('modules.error-field', ['fieldName' => 'first_name'])
 
     <p>
         <label for='last_name'>Last Name</label>
-        <input type='text' name='last_name' value='{{ old('last_name', $contact->last_name) }}'>
+        <input type='text' id='last_name' name='last_name' value='{{ old('last_name', $contact->last_name) }}'>
     </p>
     @include('modules.error-field', ['fieldName' => 'last_name'])
 
     <p>
         <label for="title">Select a title</label>
         <select name='title' id='title'>
-            <option value=''></option>
+            <option value=''>&nbsp;</option>
             <option value='dispatcher' {{ (old('title', $contact->title) == 'dispatcher')? 'selected' : '' }}>Dispatcher</option>
             <option value='sales' {{ (old('title', $contact->title) == 'sales')? 'selected' : '' }}>Sales</option>
         </select>
@@ -64,7 +64,7 @@ Form to edit a dispatch contact
     <p>
         <label for="mobile_carrier">Mobile Carrier</label>
         <select name='mobile_carrier' id='mobile_carrier'>
-            <option value=''></option>
+            <option value=''>&nbsp;</option>
             <option value='sprint' {{ (old('mobile_carrier', $contact->mobile_carrier) == 'sprint') ? 'selected' : '' }}>Sprint</option>
             <option value='verizon' {{ (old('mobile_carrier', $contact->mobile_carrier) == 'verizon') ? 'selected' : '' }}>Verizon</option>
         </select>
@@ -80,7 +80,7 @@ Form to edit a dispatch contact
     <p>
         <label for="country_code">Select a Country Code</label>
         <select name='country_code' id='country_code'>
-            <option value=''></option>
+            <option value=''>&nbsp;</option>
             <option value='1' {{ (old('country_code', $contact->country_code) == '1') ? 'selected' : '' }}>1</option>
         </select>
     </p>

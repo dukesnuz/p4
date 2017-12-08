@@ -5,11 +5,11 @@ Add a dispatcher
 @endsection
 
 @push('head')
-<script type="text/javascript" src = "/js/admin/forms.js?t=<?php echo rand(); ?>"></script>
+<script src = "/js/admin/forms.js?t=<?php echo rand(); ?>"></script>
 @endpush
 
 @section('content')
-Form to add a dispatcher
+<h3>Add a dispatcher</h3>
 
 <form action='/dispatcher/contact' method='POST'>
     {{ method_field('put') }}
@@ -20,9 +20,9 @@ Form to add a dispatcher
     <p>
         <label for='office_names'>Select an Office</label>
         <select name='office_name' id="office_names">
-            <option value=''></option>
+            <option value=''>&nbsp;</option>
             <option value='new'>Create New Office</option>
-            @foreach($results as $result):
+            @foreach($results as $result)
             <option value='{{ $result->id }}' {{ (old('result') == $result->id) ? 'selected' : '' }}>{{ $result->office_name }}</option>
             @endforeach
         </select>
@@ -40,20 +40,20 @@ Form to add a dispatcher
 
     <P>
         <label for='first_name'>First Name</label>
-        <input type='text' name='first_name' value='{{ old('first_name', 'David') }}'>
+        <input type='text' id='first_name' name='first_name' value='{{ old('first_name', 'David') }}'>
     </p>
     @include('modules.error-field', ['fieldName' => 'first_name'])
 
     <p>
         <label for='last_name'>Last Name</label>
-        <input type='text' name='last_name' value='{{ old('last_name', 'Pet') }}'>
+        <input type='text' id='last_name' name='last_name' value='{{ old('last_name', 'Pet') }}'>
     </p>
     @include('modules.error-field', ['fieldName' => 'last_name'])
 
     <p>
         <label for="title">Select a title</label>
         <select name='title' id='title'>
-            <option value=''></option>
+            <option value=''>&nbsp;</option>
             <option value='dispatcher' {{ (old('title') == 'dispatcher')? 'selected' : '' }}>Dispatcher</option>
             <option value='sales' {{ (old('title') == 'sales')? 'selected' : '' }}>Sales</option>
         </select>
@@ -86,7 +86,7 @@ Form to add a dispatcher
     <p>
         <label for="mobile_carrier">Mobile Carrier</label>
         <select name='mobile_carrier' id='mobile_carrier'>
-            <option value=''></option>
+            <option value=''>&nbsp;</option>
             <option value='sprint' {{ (old('mobile_carrier') == 'sprint') ? 'selected' : '' }}>Sprint</option>
             <option value='verizon' {{ (old('mobile_carrier') == 'verizon') ? 'selected' : '' }}>Verizon</option>
         </select>
@@ -102,7 +102,7 @@ Form to add a dispatcher
     <p>
         <label for="country_code">Select a Country Code</label>
         <select name='country_code' id='country_code'>
-            <option value=''></option>
+            <option value=''>&nbsp;</option>
             <option value='1' {{ (old('country_code') == '1') ? 'selected' : '' }}>1</option>
         </select>
     </p>

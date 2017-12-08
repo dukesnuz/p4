@@ -10,10 +10,12 @@ Dispatch offices
 @if(isset($dispatchers))
 <ul class='list'>
     @foreach ($dispatchers as $dispatcher)
-    <ul>
-        <li><a href='office/{{ $dispatcher['id'] }}/contacts' class="button">{{ $dispatcher['office_name'] }}</a></li>
-        <li><a href='/dispatcher/office/{{ kebab_case($dispatcher['office_name']) }}/{{ $dispatcher['id'] }}/delete'  class="buttonAlert" >Delete</a></li>
-    </ul>
+    <li>
+        <ul>
+            <li><a href='office/{{ $dispatcher['id'] }}/contacts' class="button">{{ $dispatcher['office_name'] }}</a></li>
+            <li><a href='/dispatcher/office/{{ kebab_case($dispatcher['office_name']) }}/{{ $dispatcher['id'] }}/delete'  class="buttonAlert" >Delete</a></li>
+        </ul>
+    </li>
     @endforeach
 </ul>
 @else
