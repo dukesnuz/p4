@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "5779cc9e53957ea30dcc0c18877dbffa",
+    "content-hash": "5ea110c58345f3bbac9013c2bd741447",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -3052,6 +3052,63 @@
                 "object graph"
             ],
             "time": "2017-10-19T19:58:43+00:00"
+        },
+        {
+            "name": "nunomaduro/collision",
+            "version": "v1.1.11",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/nunomaduro/collision.git",
+                "reference": "c612fecd810b8511ffa7b6bf4f1587e85bbbe949"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/nunomaduro/collision/zipball/c612fecd810b8511ffa7b6bf4f1587e85bbbe949",
+                "reference": "c612fecd810b8511ffa7b6bf4f1587e85bbbe949",
+                "shasum": ""
+            },
+            "require": {
+                "filp/whoops": "^2.1.4",
+                "php": "^7.1",
+                "symfony/console": "~2.8|~3.3"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "NunoMaduro\\Collision\\Adapters\\Laravel\\CollisionServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "NunoMaduro\\Collision\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Nuno Maduro",
+                    "email": "enunomaduro@gmail.com"
+                }
+            ],
+            "description": "Cli error handling for console/command-line PHP applications.",
+            "keywords": [
+                "artisan",
+                "cli",
+                "command-line",
+                "console",
+                "error",
+                "handling",
+                "laravel",
+                "laravel-zero",
+                "php",
+                "symfony"
+            ],
+            "time": "2017-12-04T21:22:02+00:00"
         },
         {
             "name": "phar-io/manifest",

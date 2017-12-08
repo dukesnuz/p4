@@ -6,10 +6,10 @@ use App\Contact;
 class ContactsTableSeeder extends Seeder
 {
     /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
+    * Run the database seeds.
+    *
+    * @return void
+    */
     public function run()
     {
         $contacts = [
@@ -22,6 +22,7 @@ class ContactsTableSeeder extends Seeder
         $count = count($contacts);
 
         foreach ($contacts as $key => $contact) {
+            $id = $key + 1;
             Contact::insert([
                 'created_at' => Carbon\Carbon::now()->subDays($count)->toDateTimeString(),
                 'updated_at' => Carbon\Carbon::now()->subDays($count - 1)->toDateTimeString(),
@@ -35,7 +36,7 @@ class ContactsTableSeeder extends Seeder
                 'extension' => $contact[7],
                 'fax' => $contact[8],
                 'country_code' => $contact[9],
-                'dispatcher_id' => 1,
+                'dispatcher_id' => $id,
             ]);
             $count--;
         }
