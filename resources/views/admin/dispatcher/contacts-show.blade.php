@@ -7,6 +7,8 @@ Show dispatch office contacts
 
 @section('content')
 <h2>{{ $dispatcher['office_name'] }}</h2>
+
+@if(isset($contacts))
 <table>
     <tr>
         <th>First Name</th>
@@ -35,4 +37,13 @@ Show dispatch office contacts
     </tr>
     @endforeach
 </table>
+@else
+<div class='sessionMessage'>
+    <p>
+        OOppss! There are no dispatch contacts for this office. Would you like to
+        <a href='/dispatcher/contact/create'>add a contact</a>?
+    </p>
+</div>
+@endif
+
 @endsection
