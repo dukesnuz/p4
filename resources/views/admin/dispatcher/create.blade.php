@@ -19,7 +19,7 @@ Add a dispatcher
     @if($results !== '')
     <p>
         <label for='office_names'>Select an Office</label>
-        <select name='office_name' id="office_names">
+        <select name='office_name' id='office_names'>
             <option value=''>&nbsp;</option>
             <option value='new'>Create New Office</option>
             @foreach($results as $result)

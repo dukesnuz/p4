@@ -15,6 +15,7 @@ class Contact extends Model
     public function campaigns()
     {
         // Using withTimestamp() ensures pivot table will auto update
-        return $this->belongsToMany('App\Campaign')->withTimestamps();
+        // Using withPivot('opt_out') to get data from the pivot table
+        return $this->belongsToMany('App\Campaign')->withTimestamps()->withPivot('opt_out');
     }
 }
