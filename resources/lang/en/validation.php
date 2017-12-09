@@ -118,10 +118,7 @@ return [
 
     'attributes' => [],
 
-    /*
-    /----------------------------------------------------
-    / I added for Larave-Phone Package
-    /
-    */
+
+    // I added for Larave-Phone Package
     'phone' => 'The :attribute field contains an invalid number.',
 ];

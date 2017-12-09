@@ -19,13 +19,18 @@ class EmailController extends Controller
         ]);
     }
 
-    //https://scotch.io/tutorials/ultimate-guide-on-sending-email-in-laravel
     public function send(Request $request)
     {
-  /******************************************************************************
-   ********************ADD VALIDATION*********************************************
-   *******************************************************************************/
+        // Validate a campaign was selected
+        $this->validate($request, [
+            'campaign' => 'required|numeric',
+        ],
+        $messages = [
+            'campaign.required' => 'Please select a campaign',
+            'campaign.numeric' => 'OOPS! System error',
+        ]);
 
+        // Grab contact, pivot and campaign table data
         $results = Campaign::with('contacts')->find($request->input('campaign'));
 
         $emailData = [];
@@ -46,18 +51,18 @@ class EmailController extends Controller
             $first_name = $emailData[0][0];
             $emailFrom = 'david@ajaxtransport.com';
             $nameFrom = 'David';
-
+            /*
             Mail::send('emails.send', ['title' => $title, 'content' => $content],
             function ($message) use($emailFrom, $nameFrom, $emailTo, $subject, $first_name)
             {
-                $message->from($emailFrom, $nameFrom);
-                $message->to($emailTo, $first_name);
-                $message->subject($subject);
-            });
-
-        }
-
-        return response()->json(['message' => 'Request completed']);
-
+            $message->from($emailFrom, $nameFrom);
+            $message->to($emailTo, $first_name);
+            $message->subject($subject);
+        });
+        */
     }
+
+    $data = ['message' => 'Success. Emails have been sent.'];
+    return response()->view('admin.dispatcher.mail', $data, 200);
+}
 }

@@ -6,7 +6,12 @@ Send Email
 
 @section('content')
 <h3>Send Email Campaigns</h3>
-
+@if(isset($message))
+<div class='sessionMessage'>
+    <p>{{ $message }}</p>
+</div>
+@endif
+@if(isset($results))
 <form action='/dispatcher/send' method='POST'>
     {{ method_field('put') }}
     {{ csrf_field() }}
@@ -19,6 +24,9 @@ Send Email
             @endforeach
         </select>
     </p>
+    @include('modules.error-field', ['fieldName' => 'campaign'])
     <p><input class="button" type='submit' value='Send Mail'></p>
 </form>
+@endif
+
 @endsection
