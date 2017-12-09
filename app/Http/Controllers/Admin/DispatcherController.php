@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Contact;
 use App\Dispatcher;
+use App\Campaign;
 use App\CustomStuff\Helper;
 use App\Utilities\ResetDatabase;
 
@@ -94,7 +95,19 @@ class DispatcherController extends Controller
         $newContact->dispatcher()->associate($dispatcher_id);
         $newContact->save();
 
-        // In future redirect to add this dispatcher's address
+        // Get id of last record created
+        $id = $newContact->id;
+
+        // Grab all the campaign ids and create an array
+        $allCampaigns = Campaign::all('id');
+        $campaignIdArray = [];
+        foreach ($allCampaigns as $campaign) {
+            $campaignIdArray[] = $campaign->id;
+        }
+        // Add new contact id and campaign id to contact_campaign pivot table
+        $results = Contact::find($id)->campaigns()->sync($campaignIdArray);
+
+        // In future redirect to add this contacts's address
         return redirect('/dispatcher/contact/create')->with('sessionMessage',
         'Success! '. $request->input('first_name').' '.$request->input('last_name').' has been entered.');
     }
