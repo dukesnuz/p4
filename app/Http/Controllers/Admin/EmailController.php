@@ -19,40 +19,44 @@ class EmailController extends Controller
         ]);
     }
 
+    //https://scotch.io/tutorials/ultimate-guide-on-sending-email-in-laravel
     public function send(Request $request)
     {
+  /******************************************************************************
+   ********************ADD VALIDATION*********************************************
+   *******************************************************************************/
+
         $results = Campaign::with('contacts')->find($request->input('campaign'));
 
-        $emailArray = [];
-
+        $emailData = [];
+        // Biuld an array of names and addresses
         foreach ($results->contacts as $contact) {
             if($contact->pivot->opt_out == null):
-                $emailArray[] = $contact->email;
-                //dd($emailArray[] = $contact->first_name);
+                $emailData[] = explode(',', $contact->first_name.','.$contact->email);
             endif;
         }
 
-        //dd($emailArray);
-        foreach($emailArray as $email){
+        // Loop through the email addresses and send mail
+        foreach($emailData as $email){
 
             $subject = $results->subject;
             $title = $results->title;
             $content = $results->content;
-            $emailTo = $email;
-            $first_name = 'first_name';
+            $emailTo = $emailData[0][1];
+            $first_name = $emailData[0][0];
             $emailFrom = 'david@ajaxtransport.com';
             $nameFrom = 'David';
 
             Mail::send('emails.send', ['title' => $title, 'content' => $content],
-            function ($message) use($subject, $emailTo, $emailFrom, $nameFrom)
+            function ($message) use($emailFrom, $nameFrom, $emailTo, $subject, $first_name)
             {
                 $message->from($emailFrom, $nameFrom);
-                $message->to($emailTo);
+                $message->to($emailTo, $first_name);
                 $message->subject($subject);
             });
-            dump($email);
+
         }
-        dump($emailArray);
+
         return response()->json(['message' => 'Request completed']);
 
     }
