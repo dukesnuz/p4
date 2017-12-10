@@ -21,6 +21,7 @@ Office {{ $dispatcher['office_name'] }} contacts
         <th>Carrier</th>
         <th>Fax</th>
         <th>Edit</th>
+        <th>Delete</th>
     </tr>
     @foreach ($contacts as $contact)
     <tr>
@@ -34,6 +35,7 @@ Office {{ $dispatcher['office_name'] }} contacts
         <td>{{ $contact['mobile_carrier'] }}</td>
         <td>{{ $contact['fax'] }}</td>
         <td><a href='/dispatcher/office/contact/{{ $contact['id'] }}/edit'>Edit</a></td>
+        <td><a href='/dispatcher/contact/{{ kebab_case($contact['first_name'].' '.$contact['last_name']) }}/{{ $contact['id'] }}/delete'  class="buttonAlert" >Coming Soon Delete</a></td>
     </tr>
     @endforeach
 </table>
