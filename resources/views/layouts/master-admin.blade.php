@@ -19,27 +19,49 @@
         <nav id='navWrap'>
             <ul>
                 <li class='item'><a href='/'>Home</a></li>
-                <li class='item'><a href='#'>Dispatchers</a>
-                    <ul>
-                        <li><a href='/dispatchers/'>Dispatchers</a></li>
-                        <li><a href='/dispatcher/offices/'>Offices</a></li>
-                        <li><a href='/dispatcher/contact/create/'>Add</a></li>
-                        <li><a href='/dispatcher/mail/'>Mail</a></li>
-                    </ul>
-                </li>
-                <li class='item'><a href='#'>Carriers</a>
-                    <ul>
-                        <li><a href='#'>Carriers</a></li>
-                    </ul>
-                </li>
-                <li class='item'><a href='#'>Shippers</a>
-                    <ul>
-                        <li><a href='#'>Shippers</a></li>
-                    </ul>
-                </li>
+                @php
+                    if(Auth::check()) {
+                @endphp
+                    <li class='item'><a href='#'>Dispatchers</a>
+                        <ul>
+                            <li><a href='/dispatchers/'>Dispatchers</a></li>
+                            <li><a href='/dispatcher/offices/'>Offices</a></li>
+                            <li><a href='/dispatcher/contact/create/'>Add</a></li>
+                            <li><a href='/dispatcher/mail/'>Mail</a></li>
+                        </ul>
+                    </li>
+                    <li class='item'><a href='#'>Carriers</a>
+                        <ul>
+                            <li><a href='#'>Carriers</a></li>
+                        </ul>
+                    </li>
+                    <li class='item'><a href='#'>Shippers</a>
+                        <ul>
+                            <li><a href='#'>Shippers</a></li>
+                        </ul>
+                    </li>
+                    @php
+                        } else {
+                    @endphp
+                    <li class='item'><a href='/login'>Login</a></li>
+                    @php
+                        }
+                @endphp
             </ul>
 
         </nav>
+        @php
+        if(Auth::check()) {
+            @endphp
+            <div>
+                <form method='POST' id='logout' action='/logout'>
+                    {{ csrf_field() }}
+                    <a href='#' onClick='document.getElementById("logout").submit();'>{{ $user->name }}Logout</a>
+                </form>
+            </div>
+            @php
+        }
+        @endphp
     </header>
     <section class='content'>
         <div class='sessionMessage'>

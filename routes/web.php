@@ -20,7 +20,21 @@ require base_path('routes/admin.php');
 */
 Route::domain('dispatch.'.Config('constants.domain'))->group(function () {
     Route::get('/', function () {
-       return view('dispatch.index');
+        return view('dispatch.index');
     });
 
+});
+
+Auth::routes();
+
+Route::get('/show-login-status', function () {
+    $user = Auth::user();
+
+    if ($user) {
+        dump('You are logged in.', $user->toArray());
+    } else {
+        dump('You are not logged in.');
+    }
+
+    return;
 });
