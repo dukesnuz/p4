@@ -34,7 +34,7 @@ Add a dispatcher
             <label for='office_name'>New Office Name</label>
             <input type='text' name='office_name' id='office_name' value='{{ old('office_name') }}'>
         </p>
-        <input type='text' name='id' id='id' value='{{ old('id') }}'>
+        <input type='hidden' name='id' id='id' value='{{ old('id') }}'>
     </div>
     @include('modules.error-field', ['fieldName' => 'office_name'])
 

@@ -66,7 +66,7 @@ li.item {
 	color: #fff;
 	background-color: #FF0000;
 }
-.button{
+button{
 	background-color: #FF9B49;
 }
 .list ul{
@@ -90,9 +90,9 @@ li.item {
 */
 a{
 	color: #000;
+	text-decoration: none;
 }
 .list a{
-	text-decoration: none;
 	display: block;
 }
 
@@ -107,7 +107,7 @@ table tr:nth-child(even){
 	background-color: #ccc;
 }
 /* Style forms*/
-input[type='text'], select, input[type='email']{
+input[type='text'], select, input[type='email'], input[type='password']{
 	background-color: antiquewhite;
 	margin-left: 25px;
 }
