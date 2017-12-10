@@ -55,7 +55,7 @@ footer{
 	border: 1px solid #000;
 }
 li.item {
-    float: inherit;
+	float: inherit;
 }
 .button, .buttonAlert{
 	padding: 5px;
@@ -82,7 +82,7 @@ li.item {
 	background-color: #ccc;
 }
 .list li:nth-child(even){
-	margin-bottom: 15px;
+	margin-top: 5px;
 	border-top: none;
 }
 /***
@@ -100,9 +100,27 @@ a{
 * Table styles
 */
 table, th, td {
-    border: 1px solid #000;
-    padding: 5px;
+	border: 1px solid #000;
+	padding: 5px;
 }
 table tr:nth-child(even){
 	background-color: #ccc;
+}
+/* Style forms*/
+input[type='text'], select, input[type='email']{
+	background-color: antiquewhite;
+	margin-left: 25px;
+}
+label {
+	display: block;
+	margin-bottom: 5px;
+	margin-left: 25px;
+}
+form ul{
+	list-style: none;
+}
+form li{
+	font-weight: bold;
+	color: #ff0000;
+	font-style: italic;
 }

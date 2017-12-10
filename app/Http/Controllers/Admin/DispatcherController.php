@@ -99,10 +99,11 @@ class DispatcherController extends Controller
         $id = $newContact->id;
 
         // Grab all the campaign ids and create an array
-        $allCampaigns = Campaign::all('id');
+        $campaignIds = Campaign::all('id');
+
         $campaignIdArray = [];
-        foreach ($allCampaigns as $campaign) {
-            $campaignIdArray[] = $campaign->id;
+        foreach ($campaignIds as $campaignId) {
+            $campaignIdArray[] = $campaignId->id;
         }
         // Add new contact id and campaign id to contact_campaign pivot table
         $results = Contact::find($id)->campaigns()->sync($campaignIdArray);
