@@ -8,4 +8,8 @@ window.onload = function() {
         e.preventDefault();
         logout();
     }, true);
+
+    if($('office_names') !== null) {
+        setOfficeMenu();
+    }
 };
