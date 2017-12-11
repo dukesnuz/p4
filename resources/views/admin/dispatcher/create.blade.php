@@ -108,6 +108,6 @@ Add a dispatcher
     </p>
     @include('modules.error-field', ['fieldName' => 'country_code'])
 
-    <button>submit</button>
+    <button type='submit'>Submit</button>
 </form>
 @endsection

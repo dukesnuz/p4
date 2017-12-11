@@ -86,6 +86,6 @@ Edit a dispatch contact
     </p>
     @include('modules.error-field', ['fieldName' => 'country_code'])
 
-    <button>Update</button>
+    <button type='submit'>Update</button>
 </form>
 @endsection
