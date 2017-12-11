@@ -8,20 +8,33 @@
         @yield('title', 'Admin')
     </title>
     <link rel='stylesheet' href='http://www.dukesnuz.com/css_libs/dukes_normalize.css'>
-    <link rel='stylesheet' href = "/css/main.css?t=<?php echo rand(); ?>"/>
+    <link rel='stylesheet' href='/css/main.css?t=<?php echo rand(); ?>'/>
 
     <script src='http://www.dukesnuz.com/js_libs/dukes.javascript.js'></script>
+    <script src='/js/main.js?t=<?php echo rand(); ?>'/></script>
     @stack('head')
 </head>
 <body>
     <header>
         <h1>Admin area</h1>
+        <div id='logout'>
+            @php
+            if(Auth::check()) {
+                @endphp
+                <form method='POST' id='logoutForm' action='/logout'>
+                    {{ csrf_field() }}
+                    <a href='#'>Logout</a>
+                </form>
+                @php
+            }
+            @endphp
+        </div>
         <nav id='navWrap'>
             <ul>
                 <li class='item'><a href='/'>Home</a></li>
                 @php
-                    if(Auth::check()) {
-                @endphp
+                if(Auth::check()) {
+                    @endphp
                     <li class='item'><a href='#'>Dispatchers</a>
                         <ul>
                             <li><a href='/dispatchers/'>Dispatchers</a></li>
@@ -41,27 +54,15 @@
                         </ul>
                     </li>
                     @php
-                        } else {
+                } else {
                     @endphp
                     <li class='item'><a href='/login'>Login</a></li>
+                    <li class='item'><a href='/register'>Register</a></li>
                     @php
-                        }
+                }
                 @endphp
             </ul>
-
         </nav>
-        @php
-        if(Auth::check()) {
-            @endphp
-            <div>
-                <form method='POST' id='logout' action='/logout'>
-                    {{ csrf_field() }}
-                    <a href='#' onClick='document.getElementById("logout").submit();'>{{ $user->name }}Logout</a>
-                </form>
-            </div>
-            @php
-        }
-        @endphp
     </header>
     <section class='content'>
         <div class='sessionMessage'>

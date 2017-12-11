@@ -25,7 +25,7 @@ Send Email
         </select>
     </p>
     @include('modules.error-field', ['fieldName' => 'campaign'])
-    <p><input class="button" type='submit' value='Send Mail'></p>
+    <p><input class='button' type='submit' value='Send Mail'></p>
 </form>
 @endif
 

@@ -34,8 +34,8 @@ Office {{ $dispatcher['office_name'] }} contacts
         <td>{{ $contact['mobile'] }}</td>
         <td>{{ $contact['mobile_carrier'] }}</td>
         <td>{{ $contact['fax'] }}</td>
-        <td><a href='/dispatcher/office/contact/{{ $contact['id'] }}/edit'>Edit</a></td>
-        <td><a href='/dispatcher/contact/{{ kebab_case($contact['first_name'].' '.$contact['last_name']) }}/{{ $contact['id'] }}/delete'  class="buttonAlert" >Coming Soon Delete</a></td>
+        <td><a href='/dispatcher/office/contact/{{ $contact['id'] }}/edit' class='button'>Edit</a></td>
+        <td><a href='/dispatcher/contact/{{ kebab_case($contact['first_name'].' '.$contact['last_name']) }}/{{ $contact['id'] }}/delete'  class="buttonAlert" >Delete</a></td>
     </tr>
     @endforeach
 </table>

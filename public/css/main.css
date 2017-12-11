@@ -4,15 +4,38 @@ body{
 	overflow-x: hidden;
 }
 header, footer{
-	color: #FF9B49;
+	color: #FFF;
 	background-color: #454341;
 }
 footer{
+	color: #ccc;
+	float: left;
+	width: 100%;
+	padding: 40px 0 600px 40px;
+}
+header h1{
+	margin: 0;
+	width: 250px;
+	display: inline-block;
+	padding-left: 40px;
+}
+#logoutForm{
+	background-color: #FF9B49;
+	padding: 1px 5px;
+}
+#logout{
+	float: right;
+	margin-right: 250px;
+	margin-top: 16px;
+	color:inherit;
 }
 .content{
 	clear: both;
 	background-color: #fff;
 	padding: 50px 100px;
+	padding-bottom: 100px;
+	width: 75%;
+	margin: auto;
 }
 .sessionMessage p{
 	font-weight: bold;
@@ -57,7 +80,7 @@ footer{
 li.item {
 	float: inherit;
 }
-.button, .buttonAlert{
+button, .button, .buttonAlert{
 	padding: 5px;
 	border-radius: 8px;
 	cursor: pointer;
@@ -66,7 +89,7 @@ li.item {
 	color: #fff;
 	background-color: #FF0000;
 }
-button{
+button, .button{
 	background-color: #FF9B49;
 }
 .list ul{
@@ -123,4 +146,7 @@ form li{
 	font-weight: bold;
 	color: #ff0000;
 	font-style: italic;
+}
+.banner{
+
 }

@@ -18,7 +18,7 @@ function clearOffice() {
     $('id').value = '';
 }
 
-window.onload = function(){
+window.onload = function() {
     var selected = $('office_names');
     selected.onchange = getOffice;
     //$('new_office').style.display='none';
