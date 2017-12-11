@@ -14,13 +14,15 @@ class UsersTableSeeder extends Seeder
     {
         $user = User::firstOrCreate([
             'email' => 'jill@harvard.edu',
-            'name' => 'Jill Harvard',
+            'first_name' => 'Jill',
+            'last_name' => 'Harvard',
             'password' => Hash::make('helloworld')
         ]);
 
         $user = User::firstOrCreate([
             'email' => 'jamal@harvard.edu',
-            'name' => 'Jamal Harvard',
+            'first_name' => 'Jamal',
+            'last_name' => 'Harvard',
             'password' => Hash::make('helloworld')
         ]);
     }
