@@ -11,7 +11,7 @@
     <link rel='stylesheet' href='/css/main.css?t=<?php echo rand(); ?>'/>
 
     <script src='http://www.dukesnuz.com/js_libs/dukes.javascript.js'></script>
-    <script src='/js/main.js?t=<?php echo rand(); ?>'/></script>
+    <script src='/js/main.js?t=<?php echo rand(); ?>'></script>
     @stack('head')
 </head>
 <body>
@@ -21,7 +21,7 @@
             @php
             if(Auth::check()) {
                 @endphp
-                <form method='POST' id='logoutForm' action='/logout'>
+                <form method='POST' action='/logout' id='logoutForm'/>
                     {{ csrf_field() }}
                     <a href='#'>Logout</a>
                 </form>
