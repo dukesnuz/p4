@@ -30,13 +30,13 @@ class EmailController extends Controller
             'campaign.numeric' => 'OOPS! System error',
         ]);
 
-        // Grab contact, pivot and campaign table data
+        // Grab contacts not soft deleted, pivot and campaign table data
         $results = Campaign::with('contacts')->find($request->input('campaign'));
 
         $emailData = [];
         // Biuld an array of names and addresses
         foreach ($results->contacts as $contact) {
-            if($contact->pivot->opt_out == null):
+            if($contact->pivot->opt_out == null && $contact->deleted_at == null):
                 $emailData[] = explode(',', $contact->first_name.','.$contact->email);
             endif;
         }
