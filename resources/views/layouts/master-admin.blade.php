@@ -16,7 +16,7 @@
 </head>
 <body>
     <header>
-        <h1>Admin area</h1>
+        <h1>Administrator Section</h1>
         <div id='logout'>
             @php
             if(Auth::check()) {
