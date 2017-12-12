@@ -7,8 +7,6 @@ class ContactsTableSeeder extends Seeder
 {
     /**
     * Run the database seeds.
-    *['Thomas', 'Jefferson', 'sales', 'david@ajaxtransport.com', '311www222eeee333rrr444ttt555yyy666uuu666', '1234567899', 9876543211, 123, 4567897899, 1],
-    *['Benjamin', 'Franklin', 'dispatcher', 'david@davidpetringa.com', '411www222eeee333rrr444ttt555yyy666uuu666', '1234567899', 9876543211, 123, 4567897899, 1],
     * @return void
     */
     public function run()

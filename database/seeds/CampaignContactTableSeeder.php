@@ -8,16 +8,13 @@ class CampaignContactTableSeeder extends Seeder
 {
     /**
     * Run the database seeds.
-    * 'Thomas' => ['Campaign 1', 'Campaign 2', 'Campaign 3'],
-    * 'Benjamin' => ['Campaign 1', 'Campaign 2','Campaign 3', 'Campaign 4'],
     * @return void
     */
     public function run()
     {
-
         $contacts = [
-            'John' => ['Campaign 1', 'Campaign 2'],
-            'George' => ['Campaign 3', 'Campaign 4'],
+            'John' => ['Campaign 1', 'Campaign 3'],
+            'George' => ['Campaign 2', 'Campaign 4'],
         ];
 
         foreach ($contacts as $name => $campaigns) {
