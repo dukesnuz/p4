@@ -142,6 +142,16 @@ class DispatcherController extends Controller
             ['dispatcher_id', '=', $dispatcher['id']],
             ])->whereNull('deleted_at')->get();
 
+            // Format numbers in contacts array
+            foreach ($contacts as $key => $contact) {
+                $fax = Helper::formatPhoneNumber($contact['fax']);
+                $contact['fax'] = $fax;
+                $mobile = Helper::formatPhoneNumber($contact['mobile']);
+                $contact['mobile'] = $mobile;
+                $telephone = Helper::formatPhoneNumber($contact['telephone']);
+                $contact['telephone'] = $telephone;
+            }
+
             if(count($contacts) > 0) {
                 return view('admin.dispatcher.contacts-show')->with([
                     'contacts' => $contacts,

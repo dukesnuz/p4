@@ -10,6 +10,7 @@ class Helper
         return $number;
     }
 
+    // Format numbers using hyphens
     public static function formatPhoneNumber($number)
     {
         $formatted_number = preg_replace("/^(\d{3})(\d{3})(\d{4})$/", "$1-$2-$3", $number);
