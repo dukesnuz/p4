@@ -13,14 +13,14 @@ class AddressesTableSeeder extends Seeder
     public function run()
     {
         $addresses = [
-            ['1 Main st', 100, 'Boston', 'Ma', '02118', 'US', 'street'],
-            ['2 Main st', 101, 'Boston', 'Ma', '02118', 'US', 'street'],
-            ['3 Main st', 102, 'Boston', 'Ma', '02118', 'US', 'street'],
-            ['4 Main st', 103, 'Boston', 'Ma', '02118', 'US', 'street'],
-            ['PO Box 1', null, 'Boston', 'Ma', '02104', 'US', 'mailing'],
-            ['PO Box 2', null, 'Boston', 'Ma', '02104', 'US', 'mailing'],
-            ['PO Box 3', null, 'Boston', 'Ma', '02104', 'US', 'mailing'],
-            ['PO Box 4', null, 'Boston', 'Ma', '02104', 'US', 'mailing']
+            ['1 Main st', 100, 'Boston', 'Ma', '11111', 'US', 'street'],
+            ['2 Main st', 101, 'Boston', 'Ma', '22222', 'US', 'street'],
+            ['3 Main st', 102, 'Boston', 'Ma', '33333', 'US', 'street'],
+            ['4 Main st', 103, 'Boston', 'Ma', '44444', 'US', 'street'],
+            ['PO Box 1', null, 'Boston', 'Ma', '55555', 'US', 'mailing'],
+            ['PO Box 2', null, 'Boston', 'Ma', '66666', 'US', 'mailing'],
+            ['PO Box 3', null, 'Boston', 'Ma', '77777', 'US', 'mailing'],
+            ['PO Box 4', null, 'Boston', 'Ma', '88888', 'US', 'mailing']
         ];
 
         $count = count($addresses);

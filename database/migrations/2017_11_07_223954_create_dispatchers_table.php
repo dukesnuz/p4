@@ -16,7 +16,7 @@ class CreateDispatchersTable extends Migration
         Schema::create('dispatchers', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
-            $table->string('office_name', 45)->unique();
+            $table->string('office_name', 50)->unique();
             $table->boolean('active')->default(0);
             $table->softDeletes();
 

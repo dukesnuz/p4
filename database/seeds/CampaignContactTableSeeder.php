@@ -17,7 +17,7 @@ class CampaignContactTableSeeder extends Seeder
 
         $contacts = [
             'John' => ['Campaign 1', 'Campaign 2'],
-            'George' => ['Campaign 1', 'Campaign 4'],        
+            'George' => ['Campaign 3', 'Campaign 4'],
         ];
 
         foreach ($contacts as $name => $campaigns) {

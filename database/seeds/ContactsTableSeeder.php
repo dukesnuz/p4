@@ -14,8 +14,8 @@ class ContactsTableSeeder extends Seeder
     public function run()
     {
         $contacts = [
-            ['John', 'Adams', 'sales', 'david@ajaxtransport.com', '111www222eeee333rrr444ttt555yyy666uuu666', '1234567899', 9876543211, 123, 4567897899, 1],
-            ['George', 'Washington', 'dispatcher', 'david@davidpetringa.com', '211www222eeee333rrr444ttt555yyy666uuu666', '1234567899', 9876543211, 123, 4567897899, 1],
+            ['John', 'Adams', 'sales', 'david@ajaxtransport.com', 1, 1234567899, 9876543211, 123, 4567897899, 1],
+            ['George', 'Washington', 'dispatcher', 'david@davidpetringa.com', 1, 1234567899, 9876543211, 123, 4567897899, 1],
         ];
 
         $count = count($contacts);
@@ -29,7 +29,7 @@ class ContactsTableSeeder extends Seeder
                 'last_name' => $contact[1],
                 'title' => $contact[2],
                 'email' => $contact[3],
-                'email_hash' => $contact[4],
+                'email_hash' => sha1($contact[3]),
                 'telephone' => $contact[5],
                 'mobile' => $contact[6],
                 'extension' => $contact[7],
