@@ -8,30 +8,19 @@ use App\Contact;
 use App\Dispatcher;
 use App\Campaign;
 use App\CustomStuff\Helper;
-use App\Utilities\ResetDatabase;
-
-//ResetDatabase::resetDatabase();
 
 class DispatcherController extends Controller
 {
-    /**
-    * Display a listing of the resource.
-    *
-    * @return \Illuminate\Http\Response
-    */
+    // Home page for admin dispatcher home
     public function index()
     {
         return view('admin.dispatcher.index');
     }
-
-    /**
-    * Show the form for creating a new resource.
-    *
-    * @return \Illuminate\Http\Response
-    */
+    // Display form to create a contact and office, if an office does not exits
     public function contactCreate()
     {
         $results = Dispatcher::orderBy('office_name')->get();
+
         if($results->isNotEmpty()):
             return view('admin.dispatcher.create')->with([
                 'results' => $results,
@@ -41,13 +30,7 @@ class DispatcherController extends Controller
             'results' => '',
         ]);;
     }
-
-    /**
-    * Store a new contact and if office name does not exist add a new office
-    *
-    * @param  \Illuminate\Http\Request  $request
-    * @return \Illuminate\Http\Response
-    */
+    // Store a new contact and if office name does not exist add a new office
     public function contactStore(Request $request)
     {
         // validate data
@@ -112,16 +95,11 @@ class DispatcherController extends Controller
         return redirect('/dispatcher/contact/create')->with('sessionMessage',
         'Success! '. $request->input('first_name').' '.$request->input('last_name').' has been entered.');
     }
-
-    /**
-    * Display the specified resource.
-    *
-    * @param  int  $id
-    * @return \Illuminate\Http\Response
-    */
+    // Display all offices
     public function officesShow()
     {
         $dispatchers = Dispatcher::all();
+
         if($dispatchers->count() > 0):
             return view('admin.dispatcher.offices-show')->with([
                 'dispatchers' => $dispatchers,
@@ -130,7 +108,6 @@ class DispatcherController extends Controller
             return view('admin.dispatcher.offices-show');
         endif;
     }
-
     // Show all the contacts for a specific office
     public function contactsShow($id)
     {
@@ -163,16 +140,12 @@ class DispatcherController extends Controller
                 'dispatcher' => $dispatcher,
             ]);
         }
-        /**
-        * Show the form for editing the specified resource.
-        *
-        * @param  int  $id
-        * @return \Illuminate\Http\Response
-        */
+        //Show the form for editing the specified contact.
         public function contactEdit($id)
         {
             $contact = new Contact();
             $contact = $contact->find($id);
+
             if(!$contact) {
                 return back()->withInput()->with('sessionMessage', "error $id");
             } else {
@@ -181,14 +154,7 @@ class DispatcherController extends Controller
                 ]);
             }
         }
-
-        /**
-        * Update the specified resource in storage.
-        *
-        * @param  \Illuminate\Http\Request  $request
-        * @param  int $id
-        * @return \Illuminate\Http\Response
-        */
+        // Update the specified contact in storage
         public function contactUpdate(Request $request, $id)
         {
             // validate data
@@ -228,23 +194,16 @@ class DispatcherController extends Controller
             'Success! '. $request->input('first_name').' '.$request->input('last_name').' has been updated.');
         }
 
-        /*
-        * Delete an office, takes user to page to delete or cancel
-        */
+        // Delete an office, takes user to page to delete or cancel
         public function officeDelete($name, $id)
         {
             $nameNew = ucfirst(str_replace('-', ' ', $name));
+
             return view('admin.dispatcher.office-delete')->with([
                 'id' => $id,
                 'nameNew' => $nameNew,
             ]);
         }
-        /**
-        * Remove the specified resource from storage.
-        *
-        * @param  int  $request
-        * @return \Illuminate\Http\Response
-        */
         // Delete an office, using soft delete
         public function officeDestroy(Request $request)
         {
