@@ -9,4 +9,10 @@ class Helper
         $number = str_replace(array(' ','-', '(',')'),'', $number);
         return $number;
     }
+
+    public static function formatPhoneNumber($number)
+    {
+        $formatted_number = preg_replace("/^(\d{3})(\d{3})(\d{4})$/", "$1-$2-$3", $number);
+        return $formatted_number;
+    }
 }
