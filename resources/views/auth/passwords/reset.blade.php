@@ -1,3 +1,4 @@
+{{-- not using this page --}}
 @extends('layouts.app')
 
 @section('content')

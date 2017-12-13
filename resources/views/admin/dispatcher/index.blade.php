@@ -1,7 +1,7 @@
 @extends('layouts.master-admin')
 
 @section('title')
-    Dispatcher Home
+Dispatcher Home
 @endsection
 
 @section('content')

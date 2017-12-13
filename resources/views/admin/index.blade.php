@@ -8,8 +8,8 @@ Admin Home
 <header>
     <h2>Administrator Home</h2>
 </header>
-@if(isset($user->name))
-<p>{{ $user->name }} welcome to the administration section. Currently
+@if(isset($user->first_name))
+<p>{{ $user->first_name }} welcome to the administration section. Currently
     live is the administration section for dispatchers. Current features include
     add, read, edit and delete functionality for dispatch offices along with each
     office's contacts. A mail feature is also available in order to send email

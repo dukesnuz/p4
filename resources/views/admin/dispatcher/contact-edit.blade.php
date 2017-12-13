@@ -13,9 +13,7 @@ Edit a dispatch contact
 
 <form action='/dispatcher/contact/{{ $contact->id }}' method='POST'>
     {{ method_field('put') }}
-
     {{ csrf_field() }}
-
     <P>
         <label for='first_name'>First Name</label>
         <input type='text' id='first_name' name='first_name' value='{{ old('first_name', $contact->first_name) }}'>

@@ -13,9 +13,7 @@ Add a dispatcher
 
 <form action='/dispatcher/contact' method='POST'>
     {{ method_field('put') }}
-
     {{ csrf_field() }}
-
     @if($results !== '')
     <p>
         <label for='office_names'>Select an Office</label>

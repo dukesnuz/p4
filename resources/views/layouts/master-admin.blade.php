@@ -23,7 +23,7 @@
                 @endphp
                 <form method='POST' action='/logout' id='logoutForm'/>
                     {{ csrf_field() }}
-                    <a href='#'>Logout</a>
+                    <a href='#'>{{ $user->first_name }} Logout</a>
                 </form>
                 @php
             }
