@@ -16,7 +16,6 @@ class DispatchersTableSeeder extends Seeder
             ['Office A'],
             ['Office B'],
             ['Office C'],
-            ['Office D']
         ];
 
         $count = count($dispatchers);
