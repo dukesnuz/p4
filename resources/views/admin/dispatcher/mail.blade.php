@@ -10,7 +10,14 @@ Send Email
 <div class='sessionMessage'>
     <p>{{ $message }}</p>
 </div>
+@else
+<ul>
+    <li>Emails will have the following from settings.</li>
+    <li>Name: {{ $user->first_name }} {{ $user->last_name }}</li>
+    <li>Email: {{ $user->email }}</li>
+</ul>
 @endif
+
 @if(isset($results))
 <form action='/dispatcher/send' method='POST'>
     {{ method_field('put') }}

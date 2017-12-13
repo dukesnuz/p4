@@ -3,6 +3,9 @@ body{
 	font-family: "Gentium Basic", serif;
 	overflow-x: hidden;
 }
+ul{
+	list-style: none;
+}
 header, footer{
 	color: #FFF;
 	background-color: #454341;
