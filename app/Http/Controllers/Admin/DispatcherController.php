@@ -39,7 +39,7 @@ class DispatcherController extends Controller
             'first_name' => 'required',
             'last_name' => 'required',
             'title' => 'required',
-            'email' => 'required|email',
+            'email' => 'unique:contacts|email',
             'telephone' => 'phone:US,BE|regex:/^([0-9\-\)\(]+)$/',
             'mobile' => 'phone:US,BE|regex:/^([0-9\-\)\(]+)$/',
             'mobile_carrier' => 'required',
