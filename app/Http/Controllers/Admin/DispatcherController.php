@@ -104,9 +104,8 @@ class DispatcherController extends Controller
             return view('admin.dispatcher.offices-show')->with([
                 'dispatchers' => $dispatchers,
             ]);
-        else:
-            return view('admin.dispatcher.offices-show');
         endif;
+        return view('admin.dispatcher.offices-show');
     }
     // Show all the contacts for a specific office
     public function contactsShow($id)
@@ -129,13 +128,13 @@ class DispatcherController extends Controller
                 $contact['telephone'] = $telephone;
             }
 
-            if(count($contacts) > 0) {
+            if(count($contacts) > 0):
                 return view('admin.dispatcher.contacts-show')->with([
                     'contacts' => $contacts,
                     'dispatcher' => $dispatcher,
                     'sessionMessage', "error",
                 ]);
-            }
+            endif;
             return view('admin.dispatcher.contacts-show')->with([
                 'dispatcher' => $dispatcher,
             ]);
@@ -146,13 +145,12 @@ class DispatcherController extends Controller
             $contact = new Contact();
             $contact = $contact->find($id);
 
-            if(!$contact) {
+            if(!$contact):
                 return back()->withInput()->with('sessionMessage', "error $id");
-            } else {
-                return view('admin.dispatcher.contact-edit')->with([
-                    'contact' => $contact,
-                ]);
-            }
+            endif;
+            return view('admin.dispatcher.contact-edit')->with([
+                'contact' => $contact,
+            ]);
         }
         // Update the specified contact in storage
         public function contactUpdate(Request $request, $id)
@@ -209,9 +207,9 @@ class DispatcherController extends Controller
         {
             $result = Dispatcher::find($request->input('id'));
 
-            if(!$result) {
+            if(!$result):
                 return redirect('dispatcher/offices')->with('sessionMessage', "OOppss! System error! Office was not deleted.");
-            }
+            endif;
             $dispatcher = Dispatcher::destroy($request->input('id'));
             return redirect('dispatcher/offices')->with('sessionMessage', "$result->office_name was deleted.");
         }
