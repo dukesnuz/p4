@@ -32,7 +32,6 @@ class EmailController extends Controller
 
         // Grab contacts not soft deleted, pivot and campaign table data
         $results = Campaign::with('contacts')->find($request->input('campaign'));
-
         $emailData = [];
         // Biuld an array of names and addresses
         foreach ($results->contacts as $contact) {
@@ -51,18 +50,19 @@ class EmailController extends Controller
             $first_name = $emailData[0][0];
             $emailFrom = \Auth::user()->email;
             $nameFrom = \Auth::user()->first_name.' '.\Auth::user()->last_name;
+            dump($email);
 
             Mail::send('emails.send', ['title' => $title, 'content' => $content],
             function ($message) use($emailFrom, $nameFrom, $emailTo, $subject, $first_name)
             {
-                $message->from($emailFrom, $nameFrom);
-                $message->to($emailTo, $first_name);
-                $message->subject($subject);
-            });
+            $message->from($emailFrom, $nameFrom);
+            $message->to($emailTo, $first_name);
+            $message->subject($subject);
+        });
 
-        }
-
-        $data = ['message' => 'Success. Emails have been sent.'];
-        return response()->view('admin.dispatcher.mail', $data, 200);
     }
+
+    $data = ['message' => 'Success. Emails have been sent.'];
+    return response()->view('admin.dispatcher.mail', $data, 200);
+}
 }
