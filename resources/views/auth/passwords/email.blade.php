@@ -9,21 +9,19 @@ Reset Password
 <h3>Reset Password</h3>
 
 @if (session('status'))
-<div class="sessionMessage">
+<div class='sessionMessage'>
     {{ session('status') }}
 </div>
 @endif
 
-<form  method="POST" action="{{ route('password.email') }}">
-
+<form  method='POST' action='{{ route('password.email') }}'>
     {{ csrf_field() }}
-
     <p>
-        <label for="email">Email Address</label>
-        <input id="email" type="email" name="email" value="{{ old('email') }}" required>
+        <label for='email'>Email Address</label>
+        <input id='email' type='email' name='email' value='{{ old('email') }}' required>
     </p>
     @include('modules.error-field', ['fieldName' => 'office_name'])
 
-    <button type="submit">Send Password Reset Link</button>
+    <button type='submit'>Send Password Reset Link</button>
 </form>
 @endsection

@@ -8,10 +8,10 @@
         @yield('title', 'Admin')
     </title>
     <link rel='stylesheet' href='http://www.dukesnuz.com/css_libs/dukes_normalize.css'>
-    <link rel='stylesheet' href='/css/main.css?t=<?php echo rand(); ?>'/>
+    <link rel='stylesheet' href='/css/main.css'/>
 
     <script src='http://www.dukesnuz.com/js_libs/dukes.javascript.js'></script>
-    <script src='/js/main.js?t=<?php echo rand(); ?>'></script>
+    <script src='/js/main.js'></script>
     @stack('head')
 </head>
 <body>

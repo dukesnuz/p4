@@ -5,7 +5,7 @@ Add a dispatcher
 @endsection
 
 @push('head')
-<script src = "/js/admin/forms.js?t=<?php echo rand(); ?>"></script>
+<script src = '/js/admin/forms.js'></script>
 @endpush
 
 @section('content')
@@ -38,13 +38,13 @@ Add a dispatcher
 
     <P>
         <label for='first_name'>First Name</label>
-        <input type='text' id='first_name' name='first_name' value='{{ old('first_name', 'David') }}'>
+        <input type='text' id='first_name' name='first_name' value='{{ old('first_name') }}'>
     </p>
     @include('modules.error-field', ['fieldName' => 'first_name'])
 
     <p>
         <label for='last_name'>Last Name</label>
-        <input type='text' id='last_name' name='last_name' value='{{ old('last_name', 'Pet') }}'>
+        <input type='text' id='last_name' name='last_name' value='{{ old('last_name') }}'>
     </p>
     @include('modules.error-field', ['fieldName' => 'last_name'])
 
@@ -60,13 +60,13 @@ Add a dispatcher
 
     <p>
         <label for='email'>Email</label>
-        <input type='email' id='email' name='email' value='{{ old('email', 'e@e.com') }}'>
+        <input type='email' id='email' name='email' value='{{ old('email') }}'>
     </p>
     @include('modules.error-field', ['fieldName' => 'email'])
 
     <p>
         <label for='telephone'>Telephone</label>
-        <input type='text' id='telephone' name='telephone' value='{{ old('telephone', '901-527-7400') }}'>
+        <input type='text' id='telephone' name='telephone' value='{{ old('telephone') }}'>
     </p>
     @include('modules.error-field', ['fieldName' => 'telephone'])
 
@@ -77,7 +77,7 @@ Add a dispatcher
 
     <p>
         <label for='mobile'>Mobile</label>
-        <input type='text' id='mobile' name='mobile' value='{{ old('mobile', '(901)230-6284') }}'>
+        <input type='text' id='mobile' name='mobile' value='{{ old('mobile') }}'>
     </p>
     @include('modules.error-field', ['fieldName' => 'mobile'])
 
@@ -93,7 +93,7 @@ Add a dispatcher
 
     <p>
         <label for='fax'>Fax</label>
-        <input type='text' id='fax' name='fax' value='{{ old('fax', '901-527-7403') }}'>
+        <input type='text' id='fax' name='fax' value='{{ old('fax') }}'>
     </p>
     @include('modules.error-field', ['fieldName' => 'fax'])
 
