@@ -12,8 +12,8 @@ class ContactsTableSeeder extends Seeder
     public function run()
     {
         $contacts = [
-            ['John', 'Adams', 'sales', 'david@ajaxtransport.com', 1, 1234567899, 9876543211, 123, 4567897899, 1],
-            ['George', 'Washington', 'dispatcher', 'david@davidpetringa.com', 1, 1234567899, 9876543211, 123, 4567897899, 1],
+            ['John', 'Adams', 'sales', 'david@ajaxtransport.com', 1, 1234567899, 9876543211, 'sprint', 123, 4567897899, 1],
+            ['George', 'Washington', 'dispatcher', 'david@davidpetringa.com', 1, 1234567899, 9876543211, 'verizon', 123, 4567897899, 1],
         ];
 
         $count = count($contacts);
@@ -30,9 +30,10 @@ class ContactsTableSeeder extends Seeder
                 'email_hash' => sha1($contact[3]),
                 'telephone' => $contact[5],
                 'mobile' => $contact[6],
-                'extension' => $contact[7],
-                'fax' => $contact[8],
-                'country_code' => $contact[9],
+                'mobile_carrier' => $contact[7],
+                'extension' => $contact[8],
+                'fax' => $contact[9],
+                'country_code' => $contact[10],
                 'dispatcher_id' => $id,
             ]);
             $count--;
