@@ -20,7 +20,7 @@ Reset Password
         <label for='email'>Email Address</label>
         <input id='email' type='email' name='email' value='{{ old('email') }}' required>
     </p>
-    @include('modules.error-field', ['fieldName' => 'office_name'])
+    @include('modules.error-field', ['fieldName' => 'email'])
 
     <button type='submit'>Send Password Reset Link</button>
 </form>
