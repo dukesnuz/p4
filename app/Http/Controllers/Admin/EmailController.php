@@ -39,7 +39,11 @@ class EmailController extends Controller
                 $emailData[] = explode(',', $contact->first_name.','.$contact->email);
             endif;
         }
-
+         $collection = $results->each(function ($item, $key) {
+             dump($item);
+            return $item;
+         });
+         dd($collection);
         // Loop through the email addresses and send mail
         foreach($emailData as $email){
 
