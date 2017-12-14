@@ -14,8 +14,8 @@ a{
 	text-decoration: none;
 }
 a:hover{
-	color:inherit;
-	background-color: #FF9B49;
+	color: #FF9B49;
+	background-color: inherit;
 }
 .list a{
 	display: block;
