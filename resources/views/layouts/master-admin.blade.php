@@ -21,7 +21,7 @@
             @php
             if(Auth::check()) {
                 @endphp
-                <form method='POST' action='/logout' id='logoutForm'/>
+                <form method='POST' action='/logout' id='logoutForm'>
                     {{ csrf_field() }}
                     <a href='#'>{{ $user->first_name }} Logout</a>
                 </form>
