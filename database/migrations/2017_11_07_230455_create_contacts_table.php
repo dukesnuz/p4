@@ -27,6 +27,7 @@ class CreateContactsTable extends Migration
             $table->enum('mobile_carrier', ['sprint', 'verizon'])->nullable();
             $table->string('fax', 10)->nullable();
             $table->char('country_code', 3)->default(1);
+            $table->tinyInteger('active')->unsigned()->default(0);
             $table->softDeletes();
         });
     }

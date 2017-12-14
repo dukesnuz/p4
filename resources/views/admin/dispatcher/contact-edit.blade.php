@@ -4,10 +4,6 @@
 Edit a dispatch contact
 @endsection
 
-@push('head')
-
-@endpush
-
 @section('content')
 <h3>Edit a dispatch contact</h3>
 

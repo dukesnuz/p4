@@ -5,7 +5,6 @@ Reset Password
 @endsection
 
 @section('content')
-
 <h3>Reset Password</h3>
 
 <form method='POST' action='{{ route('password.request') }}'>
@@ -32,4 +31,5 @@ Reset Password
     <strong>@include('modules.error-field', ['fieldName' => 'password_confirmation'])</strong>
     <p><button type='submit'>Reset Password</button></p>
 </form>
+
 @endsection

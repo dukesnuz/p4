@@ -6,6 +6,7 @@ Send Email
 
 @section('content')
 <h3>Send Email Campaigns</h3>
+
 @if(isset($message))
 <div class='sessionMessage'>
     <p>{{ $message }}</p>

@@ -16,6 +16,7 @@ class DispatcherController extends Controller
     {
         return view('admin.dispatcher.index');
     }
+
     // Display form to create a contact and office, if an office does not exits
     public function contactCreate()
     {
@@ -26,11 +27,16 @@ class DispatcherController extends Controller
                 'results' => $results,
             ]);
         endif;
+
         return view('admin.dispatcher.create')->with([
             'results' => '',
         ]);;
     }
-    // Store a new contact and if office name does not exist add a new office
+
+    /*Store a new contact and if office name does not exist add a new office
+    * For phone numbers, allowing user to use ( ) - to make it more user friendly
+    * Then use stripNumber method to remove ( ) - and jsut store only the number
+    */
     public function contactStore(Request $request)
     {
         // validate data
@@ -89,12 +95,13 @@ class DispatcherController extends Controller
             $campaignIdArray[] = $campaignId->id;
         }
         // Add new contact id and campaign id to contact_campaign pivot table
+        // Result = the new contact will be opted in to all current campaigns.
         $results = Contact::find($id)->campaigns()->sync($campaignIdArray);
 
-        // In future redirect to add this contacts's address
         return redirect('/dispatcher/contact/create')->with('sessionMessage',
         'Success! '. $request->input('first_name').' '.$request->input('last_name').' has been entered.');
     }
+
     // Display all offices
     public function officesShow()
     {
@@ -105,8 +112,10 @@ class DispatcherController extends Controller
                 'dispatchers' => $dispatchers,
             ]);
         endif;
+
         return view('admin.dispatcher.offices-show');
     }
+
     // Show all the contacts for a specific office
     public function contactsShow($id)
     {
@@ -135,10 +144,12 @@ class DispatcherController extends Controller
                     'sessionMessage', "error",
                 ]);
             endif;
+
             return view('admin.dispatcher.contacts-show')->with([
                 'dispatcher' => $dispatcher,
             ]);
         }
+
         //Show the form for editing the specified contact.
         public function contactEdit($id)
         {
@@ -146,12 +157,14 @@ class DispatcherController extends Controller
             $contact = $contact->find($id);
 
             if(!$contact):
-                return back()->withInput()->with('sessionMessage', "error $id");
+                return back()->withInput()->with('sessionMessage', 'OOppss! System Error');
             endif;
+
             return view('admin.dispatcher.contact-edit')->with([
                 'contact' => $contact,
             ]);
         }
+
         // Update the specified contact in storage
         public function contactUpdate(Request $request, $id)
         {
@@ -202,6 +215,7 @@ class DispatcherController extends Controller
                 'nameNew' => $nameNew,
             ]);
         }
+
         // Delete an office, using soft delete
         public function officeDestroy(Request $request)
         {
@@ -211,6 +225,7 @@ class DispatcherController extends Controller
                 return redirect('dispatcher/offices')->with('sessionMessage', "OOppss! System error! Office was not deleted.");
             endif;
             $dispatcher = Dispatcher::destroy($request->input('id'));
+
             return redirect('dispatcher/offices')->with('sessionMessage', "$result->office_name was deleted.");
         }
 

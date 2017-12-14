@@ -2,6 +2,7 @@
 
 @section('content')
 <h3>Register</h3>
+
 <form method="POST" action="{{ route('register') }}" >
     {{ csrf_field() }}
 
@@ -38,4 +39,5 @@
         <button type="submit">Register</button>
     </p>
 </form>
+
 @endsection

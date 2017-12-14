@@ -8,6 +8,7 @@ Admin Home
 <header>
     <h2>Administrator Home</h2>
 </header>
+
 @if(isset($user->first_name))
 <p>{{ $user->first_name }} welcome to the administration section. Currently
     live is the administration section for dispatchers. Current features include
@@ -19,8 +20,9 @@ Admin Home
 
 <p>Temporary link to demonstrate use of other subdomains that will be added. These
     subdomains will be for
-    <a href="http://dispatch.<?php echo Config('constants.domain'); ?>">Dispatchers</a>,
-    shippers and carriers.
+    <a href="http://dispatch.{{ Config('constants.domain') }}">Dispatchers</a>,
+    carriers and shippers.
 </p>
 @endif
+
 @endsection

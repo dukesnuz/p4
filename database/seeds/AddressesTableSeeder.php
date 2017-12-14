@@ -6,10 +6,10 @@ use App\Address;
 class AddressesTableSeeder extends Seeder
 {
     /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
+    * Run the database seeds.
+    *
+    * @return void
+    */
     public function run()
     {
         $addresses = [

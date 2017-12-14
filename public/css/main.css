@@ -6,6 +6,20 @@ body{
 ul{
 	list-style: none;
 }
+/***
+* Links
+*/
+a{
+	color: #000080;
+	text-decoration: none;
+}
+a:hover{
+	color:inherit;
+	background-color: #FF9B49;
+}
+.list a{
+	display: block;
+}
 header, footer{
 	color: #FFF;
 	background-color: #454341;
@@ -110,17 +124,6 @@ button, .button{
 	margin-top: 5px;
 	border-top: none;
 }
-/***
-* Links
-*/
-a{
-	color: #000;
-	text-decoration: none;
-}
-.list a{
-	display: block;
-}
-
 /**
 * Table styles
 */
@@ -149,7 +152,4 @@ form li{
 	font-weight: bold;
 	color: #ff0000;
 	font-style: italic;
-}
-.banner{
-
 }

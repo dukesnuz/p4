@@ -5,8 +5,7 @@ Delete an Office
 @endsection
 
 @section('content')
-
-<p>You are deleting office {{ $nameNew }}</p>
+<h3>You are deleting office {{ $nameNew }}</h3>
 
 <ul class='list'>
     <li>Would you rather <a href='/dispatcher/offices' class="button"><strong>CANCEL</strong></a> this action?</li>
@@ -19,4 +18,5 @@ Delete an Office
         </form>
     </li>
 </ul>
+
 @endsection

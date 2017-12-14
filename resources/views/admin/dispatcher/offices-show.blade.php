@@ -7,6 +7,7 @@ Dispatch offices
 
 @section('content')
 <h2>Dispatch Offices</h2>
+
 @if(isset($dispatchers))
 <ul class='list'>
     @foreach ($dispatchers as $dispatcher)
